@@ -27,14 +27,14 @@ class OnboardingPage extends StatelessWidget {
       );
     }
 
-    const bodyStyle = TextStyle(color: AppColors.primaryColor);
-    const titleStyle = TextStyle(color: AppColors.primaryColor);
+    const bodyStyle = TextStyle(color: Colors.white);
+    const titleStyle = TextStyle(color: Colors.white);
 
     const pageDecoration = PageDecoration(
       titleTextStyle: titleStyle,
       bodyTextStyle: bodyStyle,
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
+      pageColor: AppColors.primaryDarkColor,
       imagePadding: EdgeInsets.all(20),
       imageFlex: 2,
       bodyFlex: 1,
@@ -42,7 +42,7 @@ class OnboardingPage extends StatelessWidget {
 
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: Colors.white,
+      globalBackgroundColor: AppColors.primaryDarkColor,
       pages: [
         PageViewModel(
           title: "¡ Bienvenido a esta nueva experiencia !",
@@ -77,7 +77,7 @@ class OnboardingPage extends StatelessWidget {
       skip: const Text('Saltar', style: bodyStyle),
       next: const Icon(
         Icons.arrow_forward,
-        color: AppColors.primaryColor,
+        color: Colors.white,
         size: 30,
       ),
       done: const Text('Continuar', style: bodyStyle),
@@ -88,12 +88,12 @@ class OnboardingPage extends StatelessWidget {
           : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: AppColors.primaryColor,
+        color: Colors.white,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
-        activeColor: AppColors.primaryColor,
+        activeColor: AppColors.purpleDarkColor,
       ),
     );
   }
