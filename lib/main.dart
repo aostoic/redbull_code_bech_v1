@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Redbull BECH App',
+      title: 'Redbull Code App',
       theme: AppThemes.dark,
-      initialRoute: OnboardingPage.routeName,
+      initialRoute: LoadingPage.routeName,
       routes: appRoutes,
     );
   }

@@ -4,4 +4,5 @@ final appRoutes = {
   HomePage.routeName: (_) => const HomePage(),
   SignInPage.routeName: (_) => const SignInPage(),
   OnboardingPage.routeName: (_) => const OnboardingPage(),
+  LoadingPage.routeName: (_) => const LoadingPage(),
 };
