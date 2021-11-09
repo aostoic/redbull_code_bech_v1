@@ -27,8 +27,19 @@ class OnboardingPage extends StatelessWidget {
       );
     }
 
-    const bodyStyle = TextStyle(color: Colors.white);
-    const titleStyle = TextStyle(color: Colors.white);
+    const bodyStyle = TextStyle(
+      color: Colors.white,
+      fontFamily: 'Lato',
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+    );
+
+    const titleStyle = TextStyle(
+      color: Colors.white,
+      fontFamily: 'Lato',
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+    );
 
     const pageDecoration = PageDecoration(
       titleTextStyle: titleStyle,
@@ -46,26 +57,26 @@ class OnboardingPage extends StatelessWidget {
       pages: [
         PageViewModel(
           title: "¡ Bienvenido a esta nueva experiencia !",
-          body: "Donde podras gestionar tus futuros torneos.",
+          body: "Donde podras gestionar tus futuros torneos",
           image: _buildImage('logo_1.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Inscribete a los torneos disponibles.",
+          title: "Inscribete a los torneos disponibles",
           body:
-              "En los cuales podras participar y saber tu fecha de competición.",
+              "En los cuales podras participar y saber tu fecha de competición",
           image: _buildImage('logo_2.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Incluso organizar torneos regionales.",
-          body: "Ven y sumate a esta nueva experiencia.",
+          title: "Incluso organizar torneos regionales",
+          body: "Ven y sumate a esta nueva experiencia",
           image: _buildImage('logo_3.json'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Se el campeón de tu area e incluso de tu pais.",
-          body: "Dale al click continuar y comencemos.",
+          title: "Se el campeón de tu area e incluso de tu pais",
+          body: "Dale al click continuar y comencemos",
           image: _buildImage('logo_4.json'),
           decoration: pageDecoration,
         ),

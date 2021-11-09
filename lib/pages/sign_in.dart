@@ -7,15 +7,9 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/trophy.jpg"),
-            fit: BoxFit.contain,
-          ),
-        ),
-        child: null,
+    return const Scaffold(
+      body: Center(
+        child: Text('SignInPage'),
       ),
     );
   }
