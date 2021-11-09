@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 
 final appDarkTheme = ThemeData.dark().copyWith(
@@ -15,6 +16,7 @@ final appDarkTheme = ThemeData.dark().copyWith(
     ),
     iconTheme: const IconThemeData(
       color: Colors.black,
-    ),
+    ), // 1
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
   ),
 );

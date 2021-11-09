@@ -3,6 +3,7 @@
 ## Libraries
 
 1. [Flutter launcher icons](https://pub.dev/packages/flutter_launcher_icons)
+2. [Rive](https://pub.dev/packages/rive)
 
 ## Developers
 

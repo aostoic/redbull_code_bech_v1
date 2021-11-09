@@ -19,6 +19,7 @@ class AppColors {
 
   static final Color appBarColor = ColorFromHex("#FFFFFF");
   static final Color appBarBottomShadowColor = ColorFromHex("#C2C3CC");
-}
 
-class DarkThemeColors {}
+  // Dark colors
+  static const Color primaryDarkColor = Color.fromRGBO(49, 49, 49, 1);
+}
