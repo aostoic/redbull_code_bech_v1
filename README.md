@@ -1,6 +1,6 @@
 # Redbull Bech App :battery:
 
-# Libs :hammer_and_wrench:
+# Libs :toolbox:
 
 ## Developers
 
