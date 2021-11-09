@@ -7,6 +7,7 @@
 3. [Flutter hooks](https://pub.dev/packages/flutter_hooks)
 4. [Lottie](https://pub.dev/packages/lottie)
 5. [Introduction screen](https://pub.dev/packages/introduction_screen)
+6. [Flutter native splash](https://pub.dev/packages/flutter_native_splash)
 
 ## Developers
 
