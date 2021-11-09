@@ -1,4 +1,4 @@
-package com.example.redbull_code_bech_v1
+package cl.redbullcode.redbull_bech_app
 
 import io.flutter.embedding.android.FlutterActivity
 
