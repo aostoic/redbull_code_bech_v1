@@ -1,5 +1,9 @@
 # Redbull Bech App :battery:
 
+## Libraries
+
+1. [Flutter launcher icons](https://pub.dev/packages/flutter_launcher_icons)
+
 ## Developers
 
 1. Andro Ostoic
