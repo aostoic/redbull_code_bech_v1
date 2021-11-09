@@ -20,3 +20,5 @@ class AppColors {
   static final Color appBarColor = ColorFromHex("#FFFFFF");
   static final Color appBarBottomShadowColor = ColorFromHex("#C2C3CC");
 }
+
+class DarkThemeColors {}

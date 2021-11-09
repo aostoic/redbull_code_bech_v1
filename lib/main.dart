@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
-import 'package:redbull_code_bech_v1/pages/onboarding.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/themes/themes.dart';
 
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Redbull BECH App',
-      theme: AppThemes.light,
+      theme: AppThemes.dark,
       initialRoute: OnboardingPage.routeName,
       routes: appRoutes,
     );
