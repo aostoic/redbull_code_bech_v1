@@ -17,7 +17,7 @@ class LoadingPage extends HookWidget {
           context,
           fadeInNavigation(
             context,
-            const OnboardingPage(),
+            OnboardingPage(),
           ),
         );
       });
