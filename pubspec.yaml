@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   rive: ^0.7.33
+  flutter_hooks: ^0.18.0
 
 dev_dependencies:
   flutter_test:
