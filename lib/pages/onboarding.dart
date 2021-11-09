@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/pages/pages.dart';
 
 class OnboardingPage extends StatelessWidget {
   static String routeName = '/onboarding';
@@ -17,7 +18,13 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _onIntroEnd() {
-      Navigator.of(context).pushReplacementNamed("login_person");
+      Navigator.pushReplacement(
+        context,
+        fadeInNavigation(
+          context,
+          const SignInPage(),
+        ),
+      );
     }
 
     const bodyStyle = TextStyle(color: AppColors.primaryColor);
