@@ -2,7 +2,7 @@
     package="cl.redbullcode.redbull_bech_app">
    <application
         android:label="Redbull Code"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
