@@ -10,7 +10,9 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Acceder'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

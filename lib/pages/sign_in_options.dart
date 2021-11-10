@@ -14,6 +14,7 @@ class SignInOptionsPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundDarkColor,
       body: SingleChildScrollView(
         child: Container(
           height: size.height * 0.9,
