@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/pages/sign_in.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class SignInOptionsPage extends StatelessWidget {
@@ -68,8 +69,10 @@ class SignInOptionsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   PrimaryButton(
-                    text: 'Acceder con correo electrónico',
-                    onPressed: () {},
+                    text: 'Acceder con credenciales',
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(SignInPage.routeName);
+                    },
                   ),
                 ],
               ),
