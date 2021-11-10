@@ -45,7 +45,7 @@ class OnboardingPage extends StatelessWidget {
       titleTextStyle: titleStyle,
       bodyTextStyle: bodyStyle,
       descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: AppColors.primaryDarkColor,
+      pageColor: AppColors.backgroundDarkColor,
       imagePadding: EdgeInsets.all(20),
       imageFlex: 2,
       bodyFlex: 1,
@@ -53,7 +53,7 @@ class OnboardingPage extends StatelessWidget {
 
     return IntroductionScreen(
       key: introKey,
-      globalBackgroundColor: AppColors.primaryDarkColor,
+      globalBackgroundColor: AppColors.backgroundDarkColor,
       pages: [
         PageViewModel(
           title: "¡Bienvenido a esta nueva experiencia!",

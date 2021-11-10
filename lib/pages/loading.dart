@@ -24,9 +24,9 @@ class LoadingPage extends HookWidget {
     }, []);
 
     return Scaffold(
-      backgroundColor: AppColors.primaryDarkColor,
+      backgroundColor: AppColors.backgroundDarkColor,
       body: Container(
-        color: AppColors.primaryDarkColor,
+        color: AppColors.backgroundDarkColor,
         padding: const EdgeInsets.all(50),
         child: const RiveAnimation.asset(
           'assets/rives/loader.riv',

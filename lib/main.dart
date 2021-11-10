@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Redbull Code App',
-      theme: AppThemes.dark,
+      theme: AppThemes.light,
       initialRoute: LoadingPage.routeName,
       routes: appRoutes,
     );

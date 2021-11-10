@@ -21,7 +21,11 @@ class AppColors {
   static final Color appBarBottomShadowColor = ColorFromHex("#C2C3CC");
 
   // Dark colors
-  static const Color primaryDarkColor = Color.fromRGBO(49, 49, 49, 1);
+  static const Color backgroundDarkColor = Color.fromRGBO(49, 49, 49, 1);
   static const Color indigoDarkColor = Color.fromRGBO(89, 89, 239, 1);
   static const Color purpleDarkColor = Color.fromRGBO(177, 75, 251, 1);
+
+  // Inputs
+  static final Color inputLabelTextColor = ColorFromHex("#535867");
+  static final Color unfocusedInputBorderColor = ColorFromHex("#292C33");
 }
