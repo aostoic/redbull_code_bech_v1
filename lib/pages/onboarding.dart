@@ -29,14 +29,14 @@ class OnboardingPage extends StatelessWidget {
 
     const bodyStyle = TextStyle(
       color: Colors.white,
-      fontFamily: 'Lato',
+      fontFamily: 'Ubuntu',
       fontSize: 18,
       fontWeight: FontWeight.w400,
     );
 
     const titleStyle = TextStyle(
       color: Colors.white,
-      fontFamily: 'Lato',
+      fontFamily: 'Ubuntu',
       fontSize: 24,
       fontWeight: FontWeight.bold,
     );
