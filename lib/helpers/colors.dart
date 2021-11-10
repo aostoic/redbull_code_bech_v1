@@ -28,4 +28,7 @@ class AppColors {
   // Inputs
   static final Color inputLabelTextColor = ColorFromHex("#535867");
   static final Color unfocusedInputBorderColor = ColorFromHex("#292C33");
+
+  // Social Colors
+  static const Color facebookColor = Color(0xFF1877f2);
 }

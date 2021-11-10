@@ -5,4 +5,5 @@ final appRoutes = {
   SignInPage.routeName: (_) => const SignInPage(),
   OnboardingPage.routeName: (_) => OnboardingPage(),
   LoadingPage.routeName: (_) => const LoadingPage(),
+  SignInOptionsPage.routeName: (_) => const SignInOptionsPage(),
 };
