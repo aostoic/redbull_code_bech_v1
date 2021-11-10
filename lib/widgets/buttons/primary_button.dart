@@ -29,13 +29,14 @@ class PrimaryButton extends StatelessWidget {
 
     return MaterialButton(
       elevation: 0,
-      color: AppColors.primaryColor,
+      color: AppColors.indigoDarkColor,
       minWidth: double.infinity,
       disabledColor: AppColors.disabledColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
         side: BorderSide(
-          color: isDisabled() ? Colors.grey.shade200 : AppColors.primaryColor,
+          color:
+              isDisabled() ? Colors.grey.shade200 : AppColors.indigoDarkColor,
         ),
       ),
       onPressed: isDisabled() ? null : () => onPressed!(),

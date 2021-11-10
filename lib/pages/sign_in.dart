@@ -16,15 +16,18 @@ class SignInPage extends StatelessWidget {
           PrimaryInput(
             keyboardType: TextInputType.emailAddress,
             hinText: 'username@example.com',
-            labelText: 'E-mail',
+            labelText: 'Correo electrónico',
             prefixIcon: Icons.alternate_email,
             onChanged: (value) => print(value),
             validator: (value) => AppValidators.isValidEmail(value!),
           ),
-          const SizedBox(height: 5),
           PasswordInput(
-            labelText: 'Password',
+            labelText: 'Contraseña',
             onChanged: (value) => print(value),
+          ),
+          PrimaryButton(
+            text: 'Acceder',
+            onPressed: () {},
           ),
         ],
       ),

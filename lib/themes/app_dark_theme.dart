@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 
 final appDarkTheme = ThemeData.dark().copyWith(
-  scaffoldBackgroundColor: AppColors.backgroundColor,
+  scaffoldBackgroundColor: AppColors.backgroundDarkColor,
   appBarTheme: AppBarTheme(
     elevation: 3,
     color: AppColors.appBarColor,

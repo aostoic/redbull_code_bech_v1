@@ -17,31 +17,31 @@ class InputDecorations {
       ),
       focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(
-          color: AppColors.purpleDarkColor,
+          color: AppColors.indigoDarkColor,
           width: 2,
         ),
       ),
       hintText: hinText,
-      hintStyle: TextStyle(
-        color: AppColors.inputLabelTextColor,
+      hintStyle: const TextStyle(
+        color: Colors.white,
         fontFamily: 'Ubuntu',
       ),
       labelText: labelText,
-      labelStyle: TextStyle(
-        color: AppColors.inputLabelTextColor,
+      labelStyle: const TextStyle(
+        color: Colors.white,
         fontFamily: 'Ubuntu',
       ),
       prefixIcon: prefixIcon != null
           ? Icon(
               prefixIcon,
-              color: AppColors.purpleDarkColor,
+              color: AppColors.indigoDarkColor,
               size: 30,
             )
           : null,
       suffixIcon: suffixIcon != null
           ? IconButton(
               icon: Icon(suffixIcon, size: 30),
-              color: AppColors.purpleDarkColor,
+              color: AppColors.indigoDarkColor,
               onPressed:
                   suffixIconOnPress != null ? () => suffixIconOnPress() : null,
             )
