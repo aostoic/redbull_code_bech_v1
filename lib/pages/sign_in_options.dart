@@ -11,8 +11,8 @@ class SignInOptionsPage extends StatelessWidget {
   const SignInOptionsPage({Key? key}) : super(key: key);
 
   void signInWithGoogle() async {
-    final result = await AuthenticationService.signInWithGoogle();
-    print(result);
+    // final result = await AuthenticationService.signInWithGoogle();
+    print("entre");
   }
 
   @override
