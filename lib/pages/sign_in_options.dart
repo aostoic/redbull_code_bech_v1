@@ -1,12 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/services/auth.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class SignInOptionsPage extends StatelessWidget {
   static String routeName = '/sign-in-options';
 
   const SignInOptionsPage({Key? key}) : super(key: key);
+
+  void signInWithGoogle() async {
+    final result = await AuthenticationService.signInWithGoogle();
+    print(result);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +54,10 @@ class SignInOptionsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   SocialButton(
-                    icon: FontAwesomeIcons.google,
-                    color: Colors.red,
-                    text: 'Acceder con Google',
-                    onPressed: () {},
-                  ),
+                      icon: FontAwesomeIcons.google,
+                      color: Colors.red,
+                      text: 'Acceder con Google',
+                      onPressed: () => {signInWithGoogle()}),
                   const SizedBox(height: 10),
                   SocialButton(
                     icon: FontAwesomeIcons.apple,

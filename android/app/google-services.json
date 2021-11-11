@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1013274605273",
+    "project_id": "redbull-code-bech",
+    "storage_bucket": "redbull-code-bech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013274605273:android:791c065b08c0e5ac3870c8",
+        "android_client_info": {
+          "package_name": "cl.redbullcode.redbull_bech_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013274605273-5v64oecgidsrujsk831j210p01jrvvf2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cl.redbullcode.redbull_bech_app",
+            "certificate_hash": "d4e017ff2de1fa120be31d455bf01593c6aee846"
+          }
+        },
+        {
+          "client_id": "1013274605273-58ee9eimjjch2dj70hfu9i6ejd7tittq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3l5hPtHRBAKPlOF0_ood5GBY1_ZI4gXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013274605273-58ee9eimjjch2dj70hfu9i6ejd7tittq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

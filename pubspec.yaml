@@ -16,6 +16,12 @@ dependencies:
   introduction_screen: ^2.1.0
   lottie: ^1.2.1
   font_awesome_flutter: ^9.2.0
+  firebase_auth: ^3.2.0
+  firebase_core: ^1.10.0
+  # google_sign_in: ^5.2.1
+  google_sign_in: "^4.5.1"
+  #firebase_auth: ^1.0.2
+  #firebase_core: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -67,4 +73,3 @@ flutter:
         - asset: fonts/Ubuntu/Ubuntu-Medium.ttf
         - asset: fonts/Ubuntu/Ubuntu-MediumItalic.ttf
         - asset: fonts/Ubuntu/Ubuntu-Regular.ttf
-
