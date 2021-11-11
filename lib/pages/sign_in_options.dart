@@ -40,12 +40,6 @@ class SignInOptionsPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  SocialButton(
-                    icon: FontAwesomeIcons.facebook,
-                    color: AppColors.facebookColor,
-                    text: 'Acceder con Facebook',
-                    onPressed: () {},
-                  ),
                   const SizedBox(height: 10),
                   SocialButton(
                     icon: FontAwesomeIcons.google,
