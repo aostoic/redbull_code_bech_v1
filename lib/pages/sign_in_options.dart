@@ -4,6 +4,7 @@ import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
 import 'package:redbull_code_bech_v1/pages/sign_in.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
+import 'dart:io' show Platform;
 
 class SignInOptionsPage extends StatelessWidget {
   static String routeName = '/sign-in-options';
@@ -18,7 +19,7 @@ class SignInOptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    bool isIOS = Platform.isIOS;
     return Scaffold(
       backgroundColor: AppColors.backgroundDarkColor,
       body: SingleChildScrollView(
@@ -53,12 +54,14 @@ class SignInOptionsPage extends StatelessWidget {
                       text: 'Acceder con Google',
                       onPressed: () => {signInWithGoogle()}),
                   const SizedBox(height: 10),
-                  SocialButton(
-                    icon: FontAwesomeIcons.apple,
-                    color: Colors.black,
-                    text: 'Acceder con Apple',
-                    onPressed: () {},
-                  ),
+                  !isIOS
+                      ? const SizedBox.shrink()
+                      : SocialButton(
+                          icon: FontAwesomeIcons.apple,
+                          color: Colors.black,
+                          text: 'Acceder con Apple',
+                          onPressed: () {},
+                        ),
                   const SizedBox(height: 15),
                   const Text(
                     'O',
