@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
+import 'package:redbull_code_bech_v1/pages/sign_in.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class SignInOptionsPage extends StatelessWidget {
@@ -21,6 +20,7 @@ class SignInOptionsPage extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: AppColors.backgroundDarkColor,
       body: SingleChildScrollView(
         child: Container(
           height: size.height * 0.9,
@@ -46,12 +46,6 @@ class SignInOptionsPage extends StatelessWidget {
               ),
               Column(
                 children: [
-                  SocialButton(
-                    icon: FontAwesomeIcons.facebook,
-                    color: AppColors.facebookColor,
-                    text: 'Acceder con Facebook',
-                    onPressed: () {},
-                  ),
                   const SizedBox(height: 10),
                   SocialButton(
                       icon: FontAwesomeIcons.google,
@@ -75,8 +69,10 @@ class SignInOptionsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   PrimaryButton(
-                    text: 'Acceder con correo electrónico',
-                    onPressed: () {},
+                    text: 'Acceder con credenciales',
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(SignInPage.routeName);
+                    },
                   ),
                 ],
               ),

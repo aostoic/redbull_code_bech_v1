@@ -9,6 +9,7 @@
 5. [Introduction screen](https://pub.dev/packages/introduction_screen)
 6. [Flutter native splash](https://pub.dev/packages/flutter_native_splash)
 7. [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
+8. [Provider](https://pub.dev/packages/provider)
 
 ## Developers
 
