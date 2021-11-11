@@ -18,6 +18,6 @@ final appDarkTheme = ThemeData.dark().copyWith(
     iconTheme: const IconThemeData(
       color: Colors.white,
     ), // 1
-    systemOverlayStyle: SystemUiOverlayStyle.dark,
+    systemOverlayStyle: SystemUiOverlayStyle.light,
   ),
 );

@@ -13,26 +13,28 @@ class SignInPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Acceder'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          PrimaryInput(
-            keyboardType: TextInputType.emailAddress,
-            hinText: 'username@example.com',
-            labelText: 'Correo electrónico',
-            prefixIcon: Icons.alternate_email,
-            onChanged: (value) => print(value),
-            validator: (value) => AppValidators.isValidEmail(value!),
-          ),
-          PasswordInput(
-            labelText: 'Contraseña',
-            onChanged: (value) => print(value),
-          ),
-          PrimaryButton(
-            text: 'Acceder',
-            onPressed: () {},
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            PrimaryInput(
+              keyboardType: TextInputType.emailAddress,
+              hinText: 'username@example.com',
+              labelText: 'Correo electrónico',
+              prefixIcon: Icons.alternate_email,
+              onChanged: (value) => print(value),
+              validator: (value) => AppValidators.isValidEmail(value!),
+            ),
+            PasswordInput(
+              labelText: 'Contraseña',
+              onChanged: (value) => print(value),
+            ),
+            PrimaryButton(
+              text: 'Acceder',
+              onPressed: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
