@@ -22,7 +22,7 @@ class OnboardingPage extends StatelessWidget {
         context,
         fadeInNavigation(
           context,
-          const SignInOptionsPage(),
+          const SignInPage(),
         ),
       );
     }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/helpers/alerts.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/pages/home.dart';
 import 'package:redbull_code_bech_v1/provider/google_sign_in.dart';
@@ -54,11 +55,15 @@ class SignInOptionsPage extends StatelessWidget {
                         final provider = Provider.of<GoogleSignInProvider>(
                             context,
                             listen: false);
-                        await provider.googleLogin();
-                        // await FirebaseAuth.instance.authStateChanges();
-                        final user = FirebaseAuth.instance.currentUser!;
-                        print(user);
-                        Navigator.of(context).pushNamed(HomePage.routeName);
+                        final success = await provider.googleLogin();
+
+                        if (!success) {
+                          AppAlerts.showAlert(
+                              context, "loggin error ", "crack ale");
+                        } else {
+                          Navigator.of(context).pushReplacement(
+                              fadeInNavigation(context, const HomePage()));
+                        }
                       }),
                   const SizedBox(height: 10),
                   !isIOS

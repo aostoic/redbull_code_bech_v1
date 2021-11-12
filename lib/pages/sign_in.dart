@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
 // import 'package:provider/provider.dart';
 // import 'package:redbull_code_bech_v1/forms/forms.dart';
 // import 'package:redbull_code_bech_v1/helpers/validators.dart';
@@ -55,7 +56,13 @@ class SignInPage extends StatelessWidget {
       onLogin: _authUser,
       onSignup: _createUser,
       onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushNamed(HomePage.routeName);
+        Navigator.pushReplacement(
+          context,
+          fadeInNavigation(
+            context,
+            const HomePage(),
+          ),
+        );
       },
       onRecoverPassword: _restartPassword,
       loginProviders: <LoginProvider>[

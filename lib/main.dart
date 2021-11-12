@@ -12,13 +12,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user == null) {
-      initialRoute = LoadingPage.routeName;
-    } else {
-      initialRoute = HomePage.routeName;
-    }
-  });
+  // FirebaseAuth.instance.authStateChanges().listen((User? user) {
+  //   if (user == null) {
+  //     initialRoute = LoadingPage.routeName;
+  //   } else {
+  //     initialRoute = HomePage.routeName;
+  //   }
+  // });
+
   runApp(const MyApp());
 }
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Redbull Code App',
         theme: AppThemes.dark,
-        initialRoute: initialRoute,
+        initialRoute: LoadingPage.routeName,
         routes: appRoutes,
       ));
 }

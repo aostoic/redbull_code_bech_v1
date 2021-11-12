@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/alerts.dart';
@@ -12,16 +13,36 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('HomePage'),
+        actions: [
+          TextButton(
+            child: const Text(
+              'Salir',
+            ),
+            onPressed: () async {
+              {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                await provider.logout();
+
+                // Navigator.of(context).pushNamed(SignInOptionsPage.routeName);
+
+                // await FirebaseAuth.instance.authStateChanges();
+              }
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('HomePage'),
+            Text(user!.email!),
             PrimaryButton(
               text: 'Show alert',
               onPressed: () {
@@ -30,19 +51,6 @@ class HomePage extends StatelessWidget {
                   'Redbull BECH App',
                   'Welcome to Redbull Bech App!',
                 );
-              },
-            ),
-            PrimaryButton(
-              text: 'Salir',
-              onPressed: () {
-                {
-                  final provider =
-                      Provider.of<GoogleSignInProvider>(context, listen: false);
-                  provider.logout();
-                  Navigator.of(context).pushNamed(SignInOptionsPage.routeName);
-
-                  // await FirebaseAuth.instance.authStateChanges();
-                }
               },
             ),
           ],
