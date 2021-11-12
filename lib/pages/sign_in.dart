@@ -51,9 +51,7 @@ class SignInPage extends StatelessWidget {
       onLogin: _authUser,
       onSignup: _createUser,
       onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => const HomePage(),
-        ));
+        Navigator.of(context).pushNamed(HomePage.routeName);
       },
       onRecoverPassword: _restartPassword,
       messages: LoginMessages(

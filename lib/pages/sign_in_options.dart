@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
-import 'package:redbull_code_bech_v1/services/auth.dart';
+import 'package:redbull_code_bech_v1/pages/home.dart';
+import 'package:redbull_code_bech_v1/provider/google_sign_in.dart';
 import 'package:redbull_code_bech_v1/pages/sign_in.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 import 'dart:io' show Platform;
@@ -10,11 +13,6 @@ class SignInOptionsPage extends StatelessWidget {
   static String routeName = '/sign-in-options';
 
   const SignInOptionsPage({Key? key}) : super(key: key);
-
-  void signInWithGoogle() async {
-    // final result = await AuthenticationService.signInWithGoogle();
-    print("entre");
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,16 @@ class SignInOptionsPage extends StatelessWidget {
                       icon: FontAwesomeIcons.google,
                       color: Colors.red,
                       text: 'Acceder con Google',
-                      onPressed: () => {signInWithGoogle()}),
+                      onPressed: () async {
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
+                        await provider.googleLogin();
+                        // await FirebaseAuth.instance.authStateChanges();
+                        final user = FirebaseAuth.instance.currentUser!;
+                        print(user);
+                        Navigator.of(context).pushNamed(HomePage.routeName);
+                      }),
                   const SizedBox(height: 10),
                   !isIOS
                       ? const SizedBox.shrink()

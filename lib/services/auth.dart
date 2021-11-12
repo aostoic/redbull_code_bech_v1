@@ -2,10 +2,11 @@
 
 import 'dart:convert';
 import 'dart:math';
+// import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/foundation.dart';
 
 // import 'dart:convert';
 // import 'dart:math';
@@ -33,32 +34,6 @@ String sha256ofString(String input) {
 }
 
 class AuthenticationService {
-  // static Future<User?> signInWithGoogle() async {
-  //   FirebaseAuth _auth = FirebaseAuth.instance;
-  //   try {
-  //     UserCredential userCredential;
-
-  //     if (kIsWeb) {
-  //       var googleProvider = GoogleAuthProvider();
-  //       userCredential = await _auth.signInWithPopup(googleProvider);
-  //     } else {
-  //       final GoogleSignInAccount googleUser = (await GoogleSignIn().signIn())!;
-  //       final GoogleSignInAuthentication googleAuth =
-  //           await googleUser.authentication;
-  //       final googleAuthCredential = GoogleAuthProvider.credential(
-  //         accessToken: googleAuth.accessToken,
-  //         idToken: googleAuth.idToken,
-  //       );
-  //       userCredential = await _auth.signInWithCredential(googleAuthCredential);
-  //     }
-
-  //     final user = userCredential.user;
-  //     return user;
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
   static Future<User?> createUserWithEmailAndPassword(email, password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance

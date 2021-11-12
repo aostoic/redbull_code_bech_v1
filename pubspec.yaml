@@ -16,9 +16,9 @@ dependencies:
   introduction_screen: ^2.1.0
   lottie: ^1.2.1
   font_awesome_flutter: ^9.2.0
-  firebase_auth: ^3.2.0
-  firebase_core: ^1.10.0
-  # google_sign_in: ^5.1.0
+  firebase_auth: ^1.4.1
+  # firebase_core: ^1.10.0
+  google_sign_in: ^5.2.1
   sign_in_with_apple: ^3.0.0
   crypto: ^3.0.1
   provider: ^6.0.1
