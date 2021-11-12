@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:redbull_code_bech_v1/forms/forms.dart';
-import 'package:redbull_code_bech_v1/helpers/validators.dart';
+// import 'package:provider/provider.dart';
+// import 'package:redbull_code_bech_v1/forms/forms.dart';
+// import 'package:redbull_code_bech_v1/helpers/validators.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
-import 'package:redbull_code_bech_v1/widgets/widgets.dart';
+// import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 import 'package:flutter_login/flutter_login.dart';
 
 class SignInPage extends StatelessWidget {
@@ -35,12 +35,12 @@ class SignInPage extends StatelessWidget {
       return 'User not exists';
     }
 
-    return '';
+    return null;
   }
 
   Future<String?> _restartPassword(email) async {
     await AuthenticationService.restartPassword(email);
-    return '';
+    return null;
   }
 
   @override
@@ -54,22 +54,22 @@ class SignInPage extends StatelessWidget {
         Navigator.of(context).pushNamed(HomePage.routeName);
       },
       onRecoverPassword: _restartPassword,
-      messages: LoginMessages(
-        userHint: 'Correo',
-        additionalSignUpFormDescription: "asd",
-        passwordHint: 'Contraseña',
-        confirmPasswordHint: 'Repetir Contraseña',
-        loginButton: 'Ingresar',
-        signupButton: 'Registrarse',
-        forgotPasswordButton: 'Olvidaste tu contraseña?',
-        recoverPasswordIntro: "Recuperar contraseña",
-        recoverPasswordButton: 'Enviar',
-        goBackButton: 'Volver',
-        confirmPasswordError: 'Contraseña erronea !',
-        recoverPasswordDescription:
-            'Ingresa tu correo y te enviaremos un link para que puedas restablecer tu contraseña',
-        recoverPasswordSuccess: 'Password rescued successfully',
-      ),
+      // messages: LoginMessages(
+      //   userHint: 'Correo',
+      //   additionalSignUpFormDescription: "asd",
+      //   passwordHint: 'Contraseña',
+      //   confirmPasswordHint: 'Repetir Contraseña',
+      //   loginButton: 'Ingresar',
+      //   signupButton: 'Registrarse',
+      //   forgotPasswordButton: 'Olvidaste tu contraseña?',
+      //   recoverPasswordIntro: "Recuperar contraseña",
+      //   recoverPasswordButton: 'Enviar',
+      //   goBackButton: 'Volver',
+      //   confirmPasswordError: 'Contraseña erronea !',
+      //   recoverPasswordDescription:
+      //       'Ingresa tu correo y te enviaremos un link para que puedas restablecer tu contraseña',
+      //   recoverPasswordSuccess: 'Password rescued successfully',
+      // ),
     );
   }
 }
