@@ -1,69 +1,76 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/forms/forms.dart';
 import 'package:redbull_code_bech_v1/helpers/validators.dart';
+import 'package:redbull_code_bech_v1/pages/pages.dart';
+import 'package:redbull_code_bech_v1/services/auth.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
+import 'package:flutter_login/flutter_login.dart';
 
 class SignInPage extends StatelessWidget {
   static String routeName = '/sign-in';
 
   const SignInPage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  Future<String?> _authUser(LoginData data) async {
+    // print('Name: ${data.name}, Password: ${data.password}');
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Acceder'),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: SizedBox(
-          height: size.height * 1,
-          child: ChangeNotifierProvider(
-            create: (BuildContext context) => SignInFormProvider(),
-            child: const _Form(),
-          ),
-        ),
-      ),
-    );
+    final response = await AuthenticationService.signInWithEmailAndPassword(
+        data.name, data.password);
+    if (response == null) {
+      return 'User not exists';
+    }
+
+    return null;
   }
-}
 
-class _Form extends StatelessWidget {
-  const _Form({Key? key}) : super(key: key);
+  Future<String?> _createUser(SignupData data) async {
+    // print('Name: ${data.name}, Password: ${data.password}');
+
+    final response = await AuthenticationService.createUserWithEmailAndPassword(
+        data.name, data.password);
+    if (response == null) {
+      return 'User not exists';
+    }
+
+    return '';
+  }
+
+  Future<String?> _restartPassword(email) async {
+    await AuthenticationService.restartPassword(email);
+    return '';
+  }
 
   @override
   Widget build(BuildContext context) {
-    final signInFormProvider = Provider.of<SignInFormProvider>(context);
-
-    return Form(
-      key: signInFormProvider.formKey,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      child: Container(
-        padding: const EdgeInsets.all(30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PrimaryInput(
-              keyboardType: TextInputType.emailAddress,
-              hinText: 'username@example.com',
-              labelText: 'Correo electrónico',
-              prefixIcon: Icons.alternate_email,
-              onChanged: (value) => print(value),
-              validator: (value) => AppValidators.isValidEmail(value!),
-            ),
-            PasswordInput(
-              labelText: 'Contraseña',
-              onChanged: (value) => print(value),
-            ),
-            PrimaryButton(
-              text: 'Acceder',
-              onPressed: () {},
-            ),
-          ],
-        ),
+    return FlutterLogin(
+      title: '',
+      logo: 'assets/red-bull-code-app-icon.png',
+      onLogin: _authUser,
+      onSignup: _createUser,
+      onSubmitAnimationCompleted: () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ));
+      },
+      onRecoverPassword: _restartPassword,
+      messages: LoginMessages(
+        userHint: 'Correo',
+        additionalSignUpFormDescription: "asd",
+        passwordHint: 'Contraseña',
+        confirmPasswordHint: 'Repetir Contraseña',
+        loginButton: 'Ingresar',
+        signupButton: 'Registrarse',
+        forgotPasswordButton: 'Olvidaste tu contraseña?',
+        recoverPasswordIntro: "Recuperar contraseña",
+        recoverPasswordButton: 'Enviar',
+        goBackButton: 'Volver',
+        confirmPasswordError: 'Contraseña erronea !',
+        recoverPasswordDescription:
+            'Ingresa tu correo y te enviaremos un link para que puedas restablecer tu contraseña',
+        recoverPasswordSuccess: 'Password rescued successfully',
       ),
     );
   }
