@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -65,14 +67,15 @@ class SignInPage extends StatelessWidget {
       onSubmitAnimationCompleted: () => handleOnSubmitAnimationCompleted(),
       onRecoverPassword: restartPassword,
       loginProviders: <LoginProvider>[
-        LoginProvider(
-          icon: FontAwesomeIcons.apple,
-          label: 'Apple',
-          callback: () async {
-            debugPrint('Start Apple Sign In');
-            debugPrint('Stop Apple Sign In');
-          },
-        ),
+        if (Platform.isIOS)
+          LoginProvider(
+            icon: FontAwesomeIcons.apple,
+            label: 'Apple',
+            callback: () async {
+              debugPrint('Start Apple Sign In');
+              debugPrint('Stop Apple Sign In');
+            },
+          ),
         LoginProvider(
           icon: FontAwesomeIcons.google,
           label: 'Google',
