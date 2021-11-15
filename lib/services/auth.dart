@@ -22,7 +22,13 @@ String sha256ofString(String input) {
 
 class AuthService extends ChangeNotifier {
   final auth = FirebaseAuth.instance;
-  final googleSignIn = GoogleSignIn();
+
+  final _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
   User? _user;
   User? get user => _user;
@@ -45,8 +51,8 @@ class AuthService extends ChangeNotifier {
 
     FirebaseAuth.instance.currentUser;
 
-    if (await googleSignIn.isSignedIn()) {
-      await googleSignIn.disconnect();
+    if (await _googleSignIn.isSignedIn()) {
+      await _googleSignIn.disconnect();
     }
 
     FirebaseAuth.instance.signOut();
@@ -129,7 +135,8 @@ class AuthService extends ChangeNotifier {
 
   Future<String> googleLogin() async {
     try {
-      final googleUser = await googleSignIn.signIn();
+      final googleUser = await _googleSignIn.signIn();
+      print(googleUser);
 
       if (googleUser == null) {
         return 'No se completo el proceso de inicio de sesión';
@@ -143,7 +150,8 @@ class AuthService extends ChangeNotifier {
 
       return '';
     } catch (e) {
-      return 'No se completo el proceso de inicio de sesión';
+      print(e.toString());
+      return e.toString();
     }
   }
 
