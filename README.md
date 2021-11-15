@@ -10,8 +10,15 @@
 6. [Flutter native splash](https://pub.dev/packages/flutter_native_splash)
 7. [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
 8. [Provider](https://pub.dev/packages/provider)
+9. [Crypto](https://pub.dev/packages/crypto)
+10. [Flutter Login](https://pub.dev/packages/flutter_login)
+11. [Google Nav Bar](https://pub.dev/packages/google_nav_bar)
+12. [Firebase Auth](https://pub.dev/packages/firebase_auth)
+13. [Google Sign In](https://pub.dev/packages/google_sign_in)
+14. [Sign In With Apple](https://pub.dev/packages/sign_in_with_apple)
 
-## Developers
+
+## Developers :fire:
 
 1. Andro Ostoic
    - Github: [@aostoic](https://github.com/aostoic)
