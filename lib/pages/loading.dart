@@ -41,7 +41,7 @@ class LoadingPage extends HookWidget {
               } else if (snapshot.hasError) {
                 return const Center(child: Text("asdsad"));
               } else {
-                return OnboardingPage();
+                return SignInPage();
               }
             }));
     // return Scaffold(

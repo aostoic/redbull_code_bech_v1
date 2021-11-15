@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/helpers/colors.dart';
 import 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
@@ -84,6 +85,14 @@ class SignInPage extends StatelessWidget {
         recoverPasswordDescription:
             'Ingresa tu correo y te enviaremos un link para que puedas restablecer tu contraseña',
         recoverPasswordSuccess: 'Password rescued successfully',
+      ),
+      theme: LoginTheme(
+        primaryColor: AppColors.backgroundDarkColor,
+        buttonStyle: const TextStyle(
+          fontWeight: FontWeight.w800,
+          color: Colors.yellow,
+        ),
+        buttonTheme: const LoginButtonTheme(),
       ),
     );
   }
