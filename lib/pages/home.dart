@@ -2,8 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/alerts.dart';
-import 'package:redbull_code_bech_v1/pages/pages.dart';
-import 'package:redbull_code_bech_v1/provider/google_sign_in.dart';
+import 'package:redbull_code_bech_v1/services/auth.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,12 +25,8 @@ class HomePage extends StatelessWidget {
             onPressed: () async {
               {
                 final provider =
-                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                    Provider.of<AuthenticationService>(context, listen: false);
                 await provider.logout();
-
-                // Navigator.of(context).pushNamed(SignInOptionsPage.routeName);
-
-                // await FirebaseAuth.instance.authStateChanges();
               }
             },
           )

@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 // import 'dart:convert';
 // import 'dart:math';
@@ -33,8 +34,10 @@ String sha256ofString(String input) {
   return digest.toString();
 }
 
-class AuthenticationService {
-  static Future<User?> createUserWithEmailAndPassword(email, password) async {
+class AuthenticationService extends ChangeNotifier {
+  final googleSignIn = GoogleSignIn();
+
+  static Future<String?> createUserWithEmailAndPassword(email, password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -44,12 +47,12 @@ class AuthenticationService {
         await user.sendEmailVerification();
       }
 
-      return user;
+      return '';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
+        return 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+        return 'The account already exists for that email.';
       }
     } catch (e) {
       print(e);
@@ -61,19 +64,14 @@ class AuthenticationService {
       final sendEmail =
           await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
-      return sendEmail;
+      return null;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      }
     } catch (e) {
-      print(e);
+      return e;
     }
   }
 
-  static Future<User?> signInWithEmailAndPassword(email, password) async {
+  static Future<String?> signInWithEmailAndPassword(email, password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
@@ -84,14 +82,41 @@ class AuthenticationService {
         await user.sendEmailVerification();
       }
 
-      return user;
+      return '';
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        return 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        return 'Wrong password provided for that user.';
       }
     }
+  }
+
+  Future<String> googleLogin() async {
+    try {
+      final googleUser = await googleSignIn.signIn();
+      if (googleUser == null) {
+        return 'No se completo el proceso de inicio de sesión';
+      }
+
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      return '';
+    } catch (e) {
+      return 'No se completo el proceso de inicio de sesión';
+    }
+  }
+
+  Future logout() async {
+    FirebaseAuth.instance.currentUser;
+    if (await googleSignIn.isSignedIn()) {
+      await googleSignIn.disconnect();
+    }
+    FirebaseAuth.instance.signOut();
   }
 
   // Future<UserCredential> signInWithApple() async {
@@ -126,4 +151,5 @@ class AuthenticationService {
   //   await FirebaseAuth.instance.signOut();
   //   return "signOut";
   // }
+
 }

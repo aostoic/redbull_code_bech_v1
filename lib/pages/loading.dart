@@ -37,9 +37,9 @@ class LoadingPage extends HookWidget {
                       'assets/rives/loader.riv',
                     ));
               } else if (snapshot.hasData) {
-                return HomePage();
+                return const HomePage();
               } else if (snapshot.hasError) {
-                return Center(child: Text("asdsad"));
+                return const Center(child: Text("asdsad"));
               } else {
                 return OnboardingPage();
               }

@@ -1,18 +1,11 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
-// import 'package:provider/provider.dart';
-// import 'package:redbull_code_bech_v1/forms/forms.dart';
-// import 'package:redbull_code_bech_v1/helpers/validators.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
-import 'package:redbull_code_bech_v1/provider/google_sign_in.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
-// import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'dart:io' show Platform;
 
 class SignInPage extends StatelessWidget {
   static String routeName = '/sign-in';
@@ -20,36 +13,27 @@ class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   Future<String?> _authUser(LoginData data) async {
-    // print('Name: ${data.name}, Password: ${data.password}');
-
-    final response = await AuthenticationService.signInWithEmailAndPassword(
+    final result = await AuthenticationService.signInWithEmailAndPassword(
         data.name, data.password);
-    if (response == null) {
-      return 'User not exists';
-    }
 
-    return null;
+    return result;
   }
 
   Future<String?> _createUser(SignupData data) async {
-    // print('Name: ${data.name}, Password: ${data.password}');
-
-    final response = await AuthenticationService.createUserWithEmailAndPassword(
+    final result = await AuthenticationService.createUserWithEmailAndPassword(
         data.name, data.password);
-    if (response == null) {
-      return 'User not exists';
-    }
 
-    return null;
+    return result;
   }
 
   Future<String?> _restartPassword(email) async {
-    await AuthenticationService.restartPassword(email);
-    return null;
+    final result = await AuthenticationService.restartPassword(email);
+    return result;
   }
 
   @override
   Widget build(BuildContext context) {
+    bool isIOS = Platform.isIOS;
     return FlutterLogin(
       title: '',
       logo: 'assets/red-bull-code-app-icon.png',
@@ -80,15 +64,14 @@ class SignInPage extends StatelessWidget {
             label: 'Google',
             callback: () async {
               final provider =
-                  Provider.of<GoogleSignInProvider>(context, listen: false);
-              await provider.googleLogin();
-              // final user = FirebaseAuth.instance.currentUser!;
-              return null;
+                  Provider.of<AuthenticationService>(context, listen: false);
+              final result = await provider.googleLogin();
+              return result;
             })
       ],
       messages: LoginMessages(
         userHint: 'Correo',
-        additionalSignUpFormDescription: "asd",
+        additionalSignUpFormDescription: "",
         passwordHint: 'Contraseña',
         confirmPasswordHint: 'Repetir Contraseña',
         loginButton: 'Ingresar',
