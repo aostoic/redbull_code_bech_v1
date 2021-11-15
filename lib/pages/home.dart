@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,25 +36,37 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
+    void handleLogout() async {
+      await authService.logout();
+
+      Navigator.of(context).pushReplacement(
+        fadeInNavigation(
+          context,
+          const SignInPage(),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
         title: const Text('Bienvenido'),
         actions: [
-          TextButton(
-            child: const Icon(
-              FontAwesomeIcons.signOutAlt,
-              color: Colors.white,
-            ),
-            onPressed: () async {
-              {
-                final provider =
-                    Provider.of<AuthService>(context, listen: false);
-                await provider.logout();
-              }
-            },
-          ),
+          authService.isLoading
+              ? const Icon(
+                  FontAwesomeIcons.redo,
+                  color: Colors.white,
+                )
+              : IconButton(
+                  onPressed: () => handleLogout(),
+                  icon: const Icon(
+                    FontAwesomeIcons.signOutAlt,
+                    color: Colors.white,
+                  ),
+                ),
         ],
       ),
       body: Center(
@@ -70,7 +84,10 @@ class HomePage extends StatelessWidget {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 8,
+            ),
             child: GNav(
               rippleColor: Colors.white,
               hoverColor: Colors.white,

@@ -32,6 +32,28 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> logout() async {
+    _isLoading = true;
+
+    FirebaseAuth.instance.currentUser;
+
+    if (await googleSignIn.isSignedIn()) {
+      await googleSignIn.disconnect();
+    }
+
+    FirebaseAuth.instance.signOut();
+
+    _isLoading = false;
+  }
+
   Future<bool> checkAuth() async {
     if (auth.currentUser == null) {
       return false;
@@ -123,16 +145,6 @@ class AuthService extends ChangeNotifier {
     } catch (e) {
       return 'No se completo el proceso de inicio de sesión';
     }
-  }
-
-  Future logout() async {
-    FirebaseAuth.instance.currentUser;
-
-    if (await googleSignIn.isSignedIn()) {
-      await googleSignIn.disconnect();
-    }
-
-    FirebaseAuth.instance.signOut();
   }
 
   // Future<UserCredential> signInWithApple() async {
