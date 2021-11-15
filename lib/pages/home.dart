@@ -42,6 +42,25 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         elevation: 20,
         title: const Text('Bienvenido'),
+        actions: [
+          TextButton(
+            child: Icon(
+              FontAwesomeIcons.signOutAlt,
+              color: Colors.white,
+            ),
+            onPressed: () async {
+              {
+                final provider =
+                    Provider.of<AuthenticationService>(context, listen: false);
+                await provider.logout();
+
+                // Navigator.of(context).pushNamed(SignInOptionsPage.routeName);
+
+                // await FirebaseAuth.instance.authStateChanges();
+              }
+            },
+          )
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
