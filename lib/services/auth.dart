@@ -24,10 +24,7 @@ class AuthService extends ChangeNotifier {
   final auth = FirebaseAuth.instance;
 
   final _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
+    scopes: ['email'],
   );
 
   User? _user;
