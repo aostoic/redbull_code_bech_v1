@@ -1,19 +1,16 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:redbull_code_bech_v1/helpers/alerts.dart';
-import 'package:redbull_code_bech_v1/helpers/helpers.dart';
-import 'package:redbull_code_bech_v1/services/auth.dart';
-import 'package:redbull_code_bech_v1/widgets/widgets.dart';
-
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/services/services.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = '/home';
 
   HomePage({Key? key}) : super(key: key);
+
   int _selectedIndex = 0;
+
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -44,22 +41,18 @@ class HomePage extends StatelessWidget {
         title: const Text('Bienvenido'),
         actions: [
           TextButton(
-            child: Icon(
+            child: const Icon(
               FontAwesomeIcons.signOutAlt,
               color: Colors.white,
             ),
             onPressed: () async {
               {
                 final provider =
-                    Provider.of<AuthenticationService>(context, listen: false);
+                    Provider.of<AuthService>(context, listen: false);
                 await provider.logout();
-
-                // Navigator.of(context).pushNamed(SignInOptionsPage.routeName);
-
-                // await FirebaseAuth.instance.authStateChanges();
               }
             },
-          )
+          ),
         ],
       ),
       body: Center(
@@ -84,11 +77,11 @@ class HomePage extends StatelessWidget {
               gap: 10,
               activeColor: Colors.white,
               iconSize: 20,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              duration: Duration(milliseconds: 500),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: const Duration(milliseconds: 500),
               tabBackgroundColor: Colors.grey,
               color: Colors.grey,
-              tabs: [
+              tabs: const [
                 GButton(
                   icon: FontAwesomeIcons.trophy,
                   text: 'Torneos',
@@ -104,9 +97,7 @@ class HomePage extends StatelessWidget {
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
-                // setState(() {
                 _selectedIndex = index;
-                // });
               },
             ),
           ),
@@ -114,6 +105,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-  // void setState(Null Function() param0) {}
 }

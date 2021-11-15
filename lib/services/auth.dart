@@ -1,24 +1,11 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 import 'dart:math';
-// import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-// import 'dart:convert';
-// import 'dart:math';
-
-// import 'package:crypto/crypto.dart';
-
-// import 'package:flutter/foundation.dart';
-// import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-
-// Generates a cryptographically secure random nonce, to be included in a
-// credential request.
 String generateNonce([int length = 32]) {
   const charset =
       '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
@@ -27,14 +14,13 @@ String generateNonce([int length = 32]) {
       .join();
 }
 
-/// Returns the sha256 hash of [input] in hex notation.
 String sha256ofString(String input) {
   final bytes = utf8.encode(input);
   final digest = sha256.convert(bytes);
   return digest.toString();
 }
 
-class AuthenticationService extends ChangeNotifier {
+class AuthService extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
 
   static Future<String?> createUserWithEmailAndPassword(email, password) async {
@@ -55,19 +41,17 @@ class AuthenticationService extends ChangeNotifier {
         return 'The account already exists for that email.';
       }
     } catch (e) {
-      return "Error de comunicación";
+      return "Firebase communication error";
     }
   }
 
   static Future restartPassword(email) async {
     try {
-      final sendEmail =
-          await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
 
       return null;
-    } on FirebaseAuthException catch (e) {
     } catch (e) {
-      return "Error de comunicación";
+      return "Firebase communication error";
     }
   }
 
@@ -89,7 +73,7 @@ class AuthenticationService extends ChangeNotifier {
       } else if (e.code == 'wrong-password') {
         return 'Wrong password provided for that user.';
       }
-      return "Error de comunicación";
+      return "Firebase communication error";
     }
   }
 
