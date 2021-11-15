@@ -21,19 +21,41 @@ String sha256ofString(String input) {
 }
 
 class AuthService extends ChangeNotifier {
+  final auth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
 
-  static Future<String?> createUserWithEmailAndPassword(email, password) async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password);
+  User? _user;
+  User? get user => _user;
 
-      final user = userCredential.user;
-      if (user != null && !user.emailVerified) {
-        await user.sendEmailVerification();
+  set user(User? value) {
+    _user = value;
+    notifyListeners();
+  }
+
+  Future<bool> checkAuth() async {
+    if (auth.currentUser == null) {
+      return false;
+    }
+
+    _user = auth.currentUser;
+    return true;
+  }
+
+  Future<String?> createUserWithEmailAndPassword(email, password) async {
+    try {
+      UserCredential result =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      _user = result.user;
+
+      if (_user != null && !_user!.emailVerified) {
+        await _user!.sendEmailVerification();
       }
 
-      return '';
+      return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return 'The password provided is too weak.';
@@ -45,9 +67,11 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  static Future restartPassword(email) async {
+  Future<String?> restartPassword(email) async {
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance.sendPasswordResetEmail(
+        email: email,
+      );
 
       return null;
     } catch (e) {
@@ -55,10 +79,13 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  static Future<String?> signInWithEmailAndPassword(email, password) async {
+  Future<String> signInWithEmailAndPassword(email, password) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password);
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
       final user = userCredential.user;
 
@@ -73,13 +100,15 @@ class AuthService extends ChangeNotifier {
       } else if (e.code == 'wrong-password') {
         return 'Wrong password provided for that user.';
       }
-      return "Firebase communication error";
+
+      return e.message.toString();
     }
   }
 
   Future<String> googleLogin() async {
     try {
       final googleUser = await googleSignIn.signIn();
+
       if (googleUser == null) {
         return 'No se completo el proceso de inicio de sesión';
       }
@@ -98,9 +127,11 @@ class AuthService extends ChangeNotifier {
 
   Future logout() async {
     FirebaseAuth.instance.currentUser;
+
     if (await googleSignIn.isSignedIn()) {
       await googleSignIn.disconnect();
     }
+
     FirebaseAuth.instance.signOut();
   }
 

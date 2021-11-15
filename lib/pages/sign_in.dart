@@ -12,60 +12,71 @@ class SignInPage extends StatelessWidget {
 
   const SignInPage({Key? key}) : super(key: key);
 
-  Future<String?> _authUser(LoginData data) async {
-    final result =
-        await AuthService.signInWithEmailAndPassword(data.name, data.password);
-
-    return result;
-  }
-
-  Future<String?> _createUser(SignupData data) async {
-    final result = await AuthService.createUserWithEmailAndPassword(
-        data.name, data.password);
-
-    return result;
-  }
-
-  Future<String?> _restartPassword(email) async {
-    final result = await AuthService.restartPassword(email);
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return FlutterLogin(
-      title: '',
-      logo: 'assets/red-bull-code-app-icon.png',
-      onLogin: _authUser,
-      onSignup: _createUser,
-      onSubmitAnimationCompleted: () {
-        Navigator.pushReplacement(
+    final authService = Provider.of<AuthService>(
+      context,
+      listen: false,
+    );
+
+    Future<String?> handleSignInWithEmailAndPassword(LoginData data) async {
+      final result = await authService.signInWithEmailAndPassword(
+        data.name,
+        data.password,
+      );
+
+      return result;
+    }
+
+    Future<String?> handleCreateUser(SignupData data) async {
+      final result = await authService.createUserWithEmailAndPassword(
+        data.name,
+        data.password,
+      );
+
+      return result;
+    }
+
+    Future<String?> restartPassword(email) async {
+      final result = await authService.restartPassword(email);
+      return result;
+    }
+
+    Future<String> handleGoogleSignIn() async {
+      final result = await authService.googleLogin();
+      return result;
+    }
+
+    void handleOnSubmitAnimationCompleted() {
+      Navigator.pushReplacement(
+        context,
+        fadeInNavigation(
           context,
-          fadeInNavigation(
-            context,
-            HomePage(),
-          ),
-        );
-      },
-      onRecoverPassword: _restartPassword,
+          HomePage(),
+        ),
+      );
+    }
+
+    return FlutterLogin(
+      title: 'RBC Team',
+      logo: 'assets/red-bull-code-app-icon.png',
+      onLogin: handleSignInWithEmailAndPassword,
+      onSignup: handleCreateUser,
+      onSubmitAnimationCompleted: () => handleOnSubmitAnimationCompleted(),
+      onRecoverPassword: restartPassword,
       loginProviders: <LoginProvider>[
         LoginProvider(
           icon: FontAwesomeIcons.apple,
           label: 'Apple',
           callback: () async {
-            debugPrint('start google sign in');
-            debugPrint('stop google sign in');
-            return null;
+            debugPrint('Start Apple Sign In');
+            debugPrint('Stop Apple Sign In');
           },
         ),
         LoginProvider(
           icon: FontAwesomeIcons.google,
           label: 'Google',
-          callback: () async {
-            final provider = Provider.of<AuthService>(context, listen: false);
-            final result = await provider.googleLogin();
-            return result;
-          },
+          callback: () async => handleGoogleSignIn(),
         ),
       ],
       messages: LoginMessages(
@@ -74,15 +85,15 @@ class SignInPage extends StatelessWidget {
         passwordHint: 'Contraseña',
         confirmPasswordHint: 'Repetir Contraseña',
         loginButton: 'Ingresar',
-        signupButton: 'Registrarse',
-        forgotPasswordButton: 'Olvidaste tu contraseña?',
+        signupButton: '¡Registrarse!',
+        forgotPasswordButton: '¿Olvidaste tu contraseña?',
         recoverPasswordIntro: "Recuperar contraseña",
         recoverPasswordButton: 'Enviar',
         goBackButton: 'Volver',
-        confirmPasswordError: 'Contraseña erronea !',
+        confirmPasswordError: '¡Contraseña erronea!',
         recoverPasswordDescription:
             'Ingresa tu correo y te enviaremos un link para que puedas restablecer tu contraseña',
-        recoverPasswordSuccess: 'Password rescued successfully',
+        recoverPasswordSuccess: '¡Contraseña recuperada con éxito!',
       ),
       theme: LoginTheme(
         primaryColor: AppColors.backgroundDarkColor,
