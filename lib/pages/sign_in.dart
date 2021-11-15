@@ -45,7 +45,7 @@ class SignInPage extends StatelessWidget {
           context,
           fadeInNavigation(
             context,
-            const HomePage(),
+            HomePage(),
           ),
         );
       },
