@@ -133,21 +133,22 @@ class AuthService extends ChangeNotifier {
   Future<String> googleLogin() async {
     try {
       final googleUser = await _googleSignIn.signIn();
-      print(googleUser);
 
       if (googleUser == null) {
         return 'No se completo el proceso de inicio de sesión';
       }
 
       final googleAuth = await googleUser.authentication;
+
       final credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
 
       return '';
     } catch (e) {
-      print(e.toString());
       return e.toString();
     }
   }
