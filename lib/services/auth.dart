@@ -55,7 +55,7 @@ class AuthenticationService extends ChangeNotifier {
         return 'The account already exists for that email.';
       }
     } catch (e) {
-      print(e);
+      return "Error de comunicación";
     }
   }
 
@@ -67,7 +67,7 @@ class AuthenticationService extends ChangeNotifier {
       return null;
     } on FirebaseAuthException catch (e) {
     } catch (e) {
-      return e;
+      return "Error de comunicación";
     }
   }
 
@@ -89,6 +89,7 @@ class AuthenticationService extends ChangeNotifier {
       } else if (e.code == 'wrong-password') {
         return 'Wrong password provided for that user.';
       }
+      return "Error de comunicación";
     }
   }
 

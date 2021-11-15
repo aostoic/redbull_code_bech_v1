@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:redbull_code_bech_v1/helpers/app_secure_storage.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:rive/rive.dart';
@@ -24,6 +25,8 @@ class LoadingPage extends HookWidget {
     //   });
     // }, []);
 
+    final SecureStorageKeys storage = AppSecureStorage.storage;
+
     return Scaffold(
         backgroundColor: AppColors.backgroundDarkColor,
         body: StreamBuilder(
@@ -41,7 +44,11 @@ class LoadingPage extends HookWidget {
               } else if (snapshot.hasError) {
                 return const Center(child: Text("asdsad"));
               } else {
-                return SignInPage();
+                if (!SecureStorageKeys.hideOnBording) {
+                  return OnboardingPage();
+                } else {
+                  return SignInPage();
+                }
               }
             }));
     // return Scaffold(

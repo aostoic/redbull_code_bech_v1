@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/alerts.dart';
+import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
@@ -22,11 +23,11 @@ class HomePage extends StatelessWidget {
             child: const Text(
               'Salir',
             ),
-            onPressed: () async {
+            onPressed: () {
               {
                 final provider =
                     Provider.of<AuthenticationService>(context, listen: false);
-                await provider.logout();
+                provider.logout();
               }
             },
           )
