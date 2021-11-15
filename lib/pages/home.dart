@@ -9,72 +9,29 @@ import 'package:redbull_code_bech_v1/services/services.dart';
 class HomePage extends StatelessWidget {
   static String routeName = '/home';
 
-  HomePage({Key? key}) : super(key: key);
-
-  int _selectedIndex = 0;
-
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Likes',
-      style: optionStyle,
-    ),
-    Text(
-      'Search',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-  ];
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
+    final navigationService = Provider.of<NavigationService>(context);
 
-    void handleLogout() async {
-      await authService.logout();
-
-      Navigator.of(context).pushReplacement(
-        fadeInNavigation(
-          context,
-          const SignInPage(),
-        ),
-      );
-    }
+    final List<Widget> _widgetOptions = <Widget>[
+      const TournamentsPage(),
+      const PlayersPage(),
+      const ProfilePage(),
+    ];
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 20,
-        title: const Text('Bienvenido'),
-        actions: [
-          authService.isLoading
-              ? const Icon(
-                  FontAwesomeIcons.redo,
-                  color: Colors.white,
-                )
-              : IconButton(
-                  onPressed: () => handleLogout(),
-                  icon: const Icon(
-                    FontAwesomeIcons.signOutAlt,
-                    color: Colors.white,
-                  ),
-                ),
-        ],
-      ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(
+          navigationService.selectedIndex,
+        ),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: AppColors.backgroundDarkColor,
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
@@ -105,17 +62,15 @@ class HomePage extends StatelessWidget {
                 ),
                 GButton(
                   icon: FontAwesomeIcons.gamepad,
-                  text: 'En juego',
+                  text: 'Jugadores',
                 ),
                 GButton(
                   icon: FontAwesomeIcons.user,
                   text: 'Perfil',
                 ),
               ],
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                _selectedIndex = index;
-              },
+              selectedIndex: navigationService.selectedIndex,
+              onTabChange: (index) => navigationService.selectedIndex = index,
             ),
           ),
         ),

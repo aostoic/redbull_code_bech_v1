@@ -186,7 +186,7 @@ class AuthService extends ChangeNotifier {
 
       return '';
     } catch (e) {
-      return e.toString();
+      return 'Operación cancelada';
     }
   }
 }
