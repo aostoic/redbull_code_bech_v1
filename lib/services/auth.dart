@@ -95,13 +95,13 @@ class AuthService extends ChangeNotifier {
     }
   }
 
-  Future<String?> restartPassword(email) async {
+  Future<String> restartPassword(email) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(
         email: email,
       );
 
-      return null;
+      return '';
     } catch (e) {
       return "Firebase communication error";
     }
@@ -159,6 +159,14 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  Future<String> signInWithApple() async {
+    try {
+      return '';
+    } catch (e) {
+      return e.toString();
+    }
+  }
+
   // Future<UserCredential> signInWithApple() async {
   //   // To prevent replay attacks with the credential returned from Apple, we
   //   // include a nonce in the credential request. When signing in with
@@ -185,11 +193,6 @@ class AuthService extends ChangeNotifier {
   //   // Sign in the user with Firebase. If the nonce we generated earlier does
   //   // not match the nonce in `appleCredential.identityToken`, sign in will fail.
   //   return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-  // }
-
-  // static Future<String> signOut() async {
-  //   await FirebaseAuth.instance.signOut();
-  //   return "signOut";
   // }
 
 }

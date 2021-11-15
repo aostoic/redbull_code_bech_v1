@@ -39,14 +39,16 @@ class SignInPage extends StatelessWidget {
       return result;
     }
 
-    Future<String?> restartPassword(email) async {
-      final result = await authService.restartPassword(email);
-      return result;
+    Future<String> restartPassword(email) async {
+      return await authService.restartPassword(email);
     }
 
     Future<String> handleGoogleSignIn() async {
-      final result = await authService.googleLogin();
-      return result;
+      return await authService.googleLogin();
+    }
+
+    Future<String> handleAppleSignIn() async {
+      return await authService.signInWithApple();
     }
 
     void handleOnSubmitAnimationCompleted() {
@@ -71,15 +73,12 @@ class SignInPage extends StatelessWidget {
           LoginProvider(
             icon: FontAwesomeIcons.apple,
             label: 'Apple',
-            callback: () async {
-              debugPrint('Start Apple Sign In');
-              debugPrint('Stop Apple Sign In');
-            },
+            callback: () => handleAppleSignIn(),
           ),
         LoginProvider(
           icon: FontAwesomeIcons.google,
           label: 'Google',
-          callback: () async => handleGoogleSignIn(),
+          callback: () => handleGoogleSignIn(),
         ),
       ],
       messages: LoginMessages(
