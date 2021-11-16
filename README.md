@@ -16,14 +16,15 @@
 12. [Firebase Auth](https://pub.dev/packages/firebase_auth)
 13. [Google Sign In](https://pub.dev/packages/google_sign_in)
 14. [Sign In With Apple](https://pub.dev/packages/sign_in_with_apple)
-
+15. [Vertical Card](https://pub.dev/packages/vertical_card_pager)
+16. [Horizontal Card](https://pub.dev/packages/horizontal_card_pager)
+17. [Firebase FireStore ](https://pub.dev/packages/cloud_firestore)
 
 ## Developers :fire:
 
 1. Andro Ostoic
    - Github: [@aostoic](https://github.com/aostoic)
    - LinkedIn: [@aostoic](https://www.linkedin.com/in/aostoic/)
-   
 2. Alejandro Hernández
    - Github: [@alejandrehl]()
    - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)

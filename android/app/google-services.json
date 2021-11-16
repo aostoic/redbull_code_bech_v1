@@ -37,6 +37,14 @@
             {
               "client_id": "1013274605273-58ee9eimjjch2dj70hfu9i6ejd7tittq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1013274605273-qu1j1tlrr182i4ll8ssj0vjv0pokrumj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "cl.redbullcode.redbullBechApp",
+                "app_store_id": "1594435399"
+              }
             }
           ]
         }
