@@ -10,13 +10,13 @@
 6. [Flutter native splash](https://pub.dev/packages/flutter_native_splash)
 7. [Font Awesome Flutter](https://pub.dev/packages/font_awesome_flutter)
 8. [Provider](https://pub.dev/packages/provider)
+9. [horizontal_card_pager](https://pub.dev/packages/horizontal_card_pager)
 
 ## Developers
 
 1. Andro Ostoic
    - Github: [@aostoic](https://github.com/aostoic)
    - LinkedIn: [@aostoic](https://www.linkedin.com/in/aostoic/)
-   
 2. Alejandro Hernández
    - Github: [@alejandrehl]()
    - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)
