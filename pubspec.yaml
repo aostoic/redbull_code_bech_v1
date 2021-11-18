@@ -29,6 +29,7 @@ dependencies:
   draggable_home: ^1.0.2
   convex_bottom_bar: ^3.0.0
   firebase_messaging: ^11.1.0
+  permission_handler: ^8.3.0
 
 dev_dependencies:
   flutter_test:
