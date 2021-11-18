@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firebaseService = Provider.of<FirebaseService>(context);
     final navigationService = Provider.of<NavigationService>(context);
 
     final List<Widget> _widgetOptions = <Widget>[

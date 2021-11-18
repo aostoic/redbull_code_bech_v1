@@ -24,7 +24,10 @@ class FirebaseService extends ChangeNotifier {
 
   Future getPermissions() async {
     if (await Permission.notification.request().isGranted) {
-      print("Permissions granted");
+      print("Permissions Granted");
+    } else {
+      PermissionStatus status = await Permission.notification.status;
+      print("Permission: ${status.name}");
     }
   }
 
