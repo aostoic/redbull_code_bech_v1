@@ -116,10 +116,10 @@ class AuthService extends ChangeNotifier {
         password: password,
       );
 
-      final user = userCredential.user;
+      _user = userCredential.user;
 
-      if (user != null && !user.emailVerified) {
-        await user.sendEmailVerification();
+      if (_user != null && !_user!.emailVerified) {
+        await _user!.sendEmailVerification();
       }
 
       return '';

@@ -100,7 +100,7 @@ class SignInPage extends StatelessWidget {
         primaryColor: AppColors.backgroundDarkColor,
         buttonStyle: const TextStyle(
           fontWeight: FontWeight.w800,
-          color: Colors.yellow,
+          color: Colors.white,
         ),
         buttonTheme: const LoginButtonTheme(),
       ),

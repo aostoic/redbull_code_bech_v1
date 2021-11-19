@@ -4,6 +4,7 @@ import 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
+import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,6 +14,7 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navigationService = Provider.of<NavigationService>(context);
     final authService = Provider.of<AuthService>(context);
 
     void handleLogout() async {
@@ -24,6 +26,10 @@ class ProfilePage extends StatelessWidget {
           const SignInPage(),
         ),
       );
+
+      Future.delayed(const Duration(milliseconds: 1000), () {
+        navigationService.selectedIndex = 0;
+      });
     }
 
     return Scaffold(
