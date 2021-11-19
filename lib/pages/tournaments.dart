@@ -26,14 +26,17 @@ class TournamentsPage extends StatelessWidget {
 
     final List<Widget> images = [
       for (int i = 0; i < tournaments.length; i++)
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            image: DecorationImage(
-              image: NetworkImage(
-                tournaments[i].urlImage,
+        Hero(
+          tag: tournaments[i].id,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              image: DecorationImage(
+                image: NetworkImage(
+                  tournaments[i].urlImage,
+                ),
+                fit: BoxFit.cover,
               ),
-              fit: BoxFit.cover,
             ),
           ),
         ),
