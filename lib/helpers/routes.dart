@@ -8,4 +8,5 @@ final appRoutes = {
   ProfilePage.routeName: (_) => const ProfilePage(),
   TournamentsPage.routeName: (_) => const TournamentsPage(),
   PlayersPage.routeName: (_) => const PlayersPage(),
+  TournamentPage.routeName: (_) => const TournamentPage(),
 };

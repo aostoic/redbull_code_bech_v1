@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
+import 'package:redbull_code_bech_v1/pages/pages.dart';
+import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class TournamentsPage extends StatelessWidget {
@@ -9,19 +12,26 @@ class TournamentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tournamentService = Provider.of<TournamentService>(context);
+    final List<Tournament> tournaments = tournamentService.tournaments;
+
+    void goToTournament(Tournament tournament) {
+      tournamentService.currentTournament = tournament;
+      Navigator.of(context).pushNamed(TournamentPage.routeName);
+    }
+
     final List<String> titles = [
-      for (int i = 0; i < tournamentsDummyData.length; i++)
-        tournamentsDummyData[i].title,
+      for (int i = 0; i < tournaments.length; i++) tournaments[i].title,
     ];
 
     final List<Widget> images = [
-      for (int i = 0; i < tournamentsDummyData.length; i++)
+      for (int i = 0; i < tournaments.length; i++)
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
             image: DecorationImage(
               image: NetworkImage(
-                tournamentsDummyData[i].urlImage,
+                tournaments[i].urlImage,
               ),
               fit: BoxFit.cover,
             ),
@@ -46,7 +56,9 @@ class TournamentsPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
                 onPageChanged: (page) {},
-                onSelectedItem: (index) {},
+                onSelectedItem: (index) => goToTournament(
+                  tournaments[index],
+                ),
                 initialPage: 0,
                 align: ALIGN.CENTER,
               ),
