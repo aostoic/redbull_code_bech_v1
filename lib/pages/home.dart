@@ -20,9 +20,9 @@ class HomePage extends StatelessWidget {
 
     final List<Widget> _widgetOptions = <Widget>[
       const TournamentsPage(),
-      const PlayersPage(),
-      const ProfilePage(),
-      const ProfilePage(),
+      //const PlayersPage(),
+      //const ProfilePage(),
+      //const ProfilePage(),
       const ProfilePage(),
     ];
 
@@ -38,10 +38,13 @@ class HomePage extends StatelessWidget {
         color: AppColors.disabledColor,
         items: const [
           TabItem(icon: FontAwesomeIcons.trophy, title: 'Torneos'),
-          TabItem(icon: FontAwesomeIcons.gamepad, title: 'Activos'),
-          TabItem(icon: FontAwesomeIcons.plus, title: 'Crear '),
-          TabItem(icon: FontAwesomeIcons.list, title: 'Finalizados'),
-          TabItem(icon: FontAwesomeIcons.user, title: 'Perfil'),
+          //TabItem(icon: FontAwesomeIcons.gamepad, title: 'Activos'),
+          //TabItem(icon: FontAwesomeIcons.plus, title: 'Crear '),
+          //TabItem(icon: FontAwesomeIcons.list, title: 'Finalizados'),
+          TabItem(
+            icon: FontAwesomeIcons.user,
+            title: 'Perfil',
+          ),
         ],
         initialActiveIndex: navigationService.selectedIndex,
         onTap: (index) => navigationService.selectedIndex = index,
