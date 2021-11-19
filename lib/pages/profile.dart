@@ -70,7 +70,7 @@ class ProfileHeader extends StatelessWidget {
               NetworkImages.defaultProfileImage1,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           Text(
             authService.user!.email!,
             style: const TextStyle(
@@ -80,7 +80,7 @@ class ProfileHeader extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 30),
           const TournamentsPartHeader(),
           const SizedBox(height: 20),
           const GamesPartHeader(),
