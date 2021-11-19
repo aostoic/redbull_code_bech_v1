@@ -18,6 +18,7 @@ class TournamentsPage extends StatelessWidget {
       for (int i = 0; i < tournamentsDummyData.length; i++)
         Container(
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
             image: DecorationImage(
               image: NetworkImage(
                 tournamentsDummyData[i].urlImage,
@@ -41,6 +42,8 @@ class TournamentsPage extends StatelessWidget {
                 images: images, // required
                 textStyle: const TextStyle(
                   color: Colors.white,
+                  fontFamily: 'Ubuntu',
+                  fontWeight: FontWeight.bold,
                 ),
                 onPageChanged: (page) {},
                 onSelectedItem: (index) {},
