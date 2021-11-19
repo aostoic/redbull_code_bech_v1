@@ -81,14 +81,24 @@ class ProfileHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'Partidas',
-            style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Ubuntu',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Partidas',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Ubuntu',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(width: 10),
+              Icon(
+                FontAwesomeIcons.gamepad,
+                color: Colors.black,
+              )
+            ],
           ),
           const SizedBox(height: 10),
           Row(
