@@ -56,7 +56,7 @@ class ProfileHeader extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
 
     return Container(
-      height: size.height * 0.2,
+      height: size.height * 0.3,
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -79,6 +79,88 @@ class ProfileHeader extends StatelessWidget {
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            'Partidas',
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Ubuntu',
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: const [
+                  Text(
+                    '0',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Jugadas',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: const [
+                  Text(
+                    '0',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Ganadas',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: const [
+                  Text(
+                    '0',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Perdidas',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Ubuntu',
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ],
       ),
