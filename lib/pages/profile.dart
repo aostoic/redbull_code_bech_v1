@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
+import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/auth.dart';
 
@@ -27,7 +28,7 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Perfil'),
+        title: const Text('Mi Perfil'),
         actions: <Widget>[
           Padding(
               padding: const EdgeInsets.only(right: 20.0),
@@ -37,8 +38,49 @@ class ProfilePage extends StatelessWidget {
               )),
         ],
       ),
-      body: const Center(
-        child: Text('ProfilePage'),
+      body: Column(
+        children: const [
+          ProfileHeader(),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileHeader extends StatelessWidget {
+  const ProfileHeader({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final authService = Provider.of<AuthService>(context);
+
+    return Container(
+      height: size.height * 0.2,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CircleAvatar(
+            radius: 50.0,
+            backgroundImage: NetworkImage(
+              NetworkImages.defaultProfileImage1,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            authService.user!.email!,
+            style: const TextStyle(
+              color: Colors.black,
+              fontFamily: 'Ubuntu',
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }
