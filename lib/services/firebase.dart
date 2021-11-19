@@ -28,12 +28,15 @@ class FirebaseService extends ChangeNotifier {
     } else {
       PermissionStatus status = await Permission.notification.status;
       print("Permission: ${status.name}");
+      final result = await Permission.notification.request();
+      print("Result $result");
     }
   }
 
   Future<void> getToken() async {
     String? token = await messaging.getToken();
     messagingToken = token!;
+    print("Messaging Token: $messagingToken");
   }
 
   static Future<String?> checkToken() async {

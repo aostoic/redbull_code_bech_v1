@@ -30,7 +30,7 @@ class LoadingPage extends HookWidget {
       if (!isAuthenticated) {
         goToPage(OnboardingPage());
       } else {
-        goToPage(HomePage());
+        goToPage(const HomePage());
       }
     }
 
