@@ -104,7 +104,7 @@ class OnboardingPage extends StatelessWidget {
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
-        activeColor: AppColors.purpleDarkColor,
+        activeColor: AppColors.indigoDarkColor,
       ),
     );
   }
