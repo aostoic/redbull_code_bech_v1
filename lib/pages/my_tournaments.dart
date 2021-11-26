@@ -10,6 +10,11 @@ class MyTournamentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(
+      context,
+      listen: false,
+    );
+
     final tournamentService = Provider.of<TournamentService>(
       context,
       listen: false,
@@ -20,7 +25,7 @@ class MyTournamentsPage extends StatelessWidget {
         title: const Text('Mis Torneos'),
       ),
       body: FutureBuilder(
-        future: tournamentService.getMyTournaments(),
+        future: tournamentService.getMyTournaments(authService.user!.uid),
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

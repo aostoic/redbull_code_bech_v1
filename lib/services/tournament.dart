@@ -12,38 +12,7 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Tournament> _tournaments = [
-    Tournament(
-      id: 'asd123',
-      title: 'Mario Kart',
-      description: 'Divertido juego de carreras',
-      status: "waiting",
-      game: 'Mario Kart',
-      urlImage: NetworkImages.marioKartPortrait,
-      playersQuantity: 16,
-      ownerId: "asdsa123123",
-    ),
-    Tournament(
-      id: 'asd123asdjhfghj123',
-      title: 'Fifa 2021',
-      description: 'Juego de futbol competitivo',
-      status: "waiting",
-      game: 'Fifa 2021',
-      urlImage: NetworkImages.fifa21Portrait,
-      playersQuantity: 8,
-      ownerId: "asdsa123123",
-    ),
-    Tournament(
-      id: 'asd123asdjhfghj123asdsad1231',
-      title: 'Super Smash bros',
-      description: 'Juego de peleas competitivo',
-      status: "waiting",
-      game: 'Super Smash Bros',
-      urlImage: NetworkImages.smashBrosPortrait,
-      playersQuantity: 8,
-      ownerId: "asdsa123123",
-    ),
-  ];
+  List<Tournament> _tournaments = [];
   List<Tournament> get tournaments => _tournaments;
 
   set tournaments(List<Tournament> values) {
@@ -59,24 +28,22 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool value) {
-    _isLoading = value;
-    notifyListeners();
-  }
-
-  Future<List<Tournament>> getMyTournaments() async {
+  Future<List<Tournament>?> getMyTournaments(String ownerId) async {
     try {
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
+          .where('ownerId', isEqualTo: ownerId)
           .get();
 
-      return Tournament.getListFromFirebase(result.docs);
+      final tournaments = Tournament.getListFromFirebase(result.docs);
+
+      if (tournaments.isEmpty) {
+        return null;
+      }
+
+      return tournaments;
     } catch (err) {
       print("getMyTournaments err: ${err.toString()}");
-      return [];
     }
   }
 }
