@@ -66,6 +66,10 @@ class PlayerProfileOptions extends StatelessWidget {
       });
     }
 
+    void goToPage(String routeName) {
+      Navigator.of(context).pushNamed(routeName);
+    }
+
     return Container(
       width: double.infinity,
       height: size.height * 0.15,
@@ -74,19 +78,20 @@ class PlayerProfileOptions extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const ListTile(
-            leading: Icon(
+          ListTile(
+            onTap: () => goToPage(MyTournamentsPage.routeName),
+            leading: const Icon(
               FontAwesomeIcons.trophy,
               color: AppColors.backgroundDarkColor,
             ),
-            title: Text(
+            title: const Text(
               'Mis torneos',
               style: TextStyle(
                 color: AppColors.backgroundDarkColor,
                 fontFamily: 'Ubuntu',
               ),
             ),
-            trailing: Icon(
+            trailing: const Icon(
               FontAwesomeIcons.arrowCircleRight,
               color: AppColors.backgroundDarkColor,
             ),

@@ -21,6 +21,7 @@ class TournamentService extends ChangeNotifier {
       tournamentCategory: TournamentCategory.single,
       urlImage: NetworkImages.marioKartPortrait,
       playersQuantity: 16,
+      ownerId: "asdsa123123",
     ),
     Tournament(
       id: 'asd123asdjhfghj123',
@@ -31,6 +32,7 @@ class TournamentService extends ChangeNotifier {
       tournamentCategory: TournamentCategory.single,
       urlImage: NetworkImages.fifa21Portrait,
       playersQuantity: 8,
+      ownerId: "asdsa123123",
     ),
     Tournament(
       id: 'asd123asdjhfghj123asdsad1231',
@@ -41,6 +43,7 @@ class TournamentService extends ChangeNotifier {
       tournamentCategory: TournamentCategory.single,
       urlImage: NetworkImages.smashBrosPortrait,
       playersQuantity: 8,
+      ownerId: "asdsa123123",
     ),
   ];
   List<Tournament> get tournaments => _tournaments;
