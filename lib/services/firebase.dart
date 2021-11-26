@@ -29,7 +29,6 @@ class FirebaseService extends ChangeNotifier {
       PermissionStatus status = await Permission.notification.status;
       print("Permission: ${status.name}");
       final result = await Permission.notification.request();
-      print("Result $result");
     }
   }
 

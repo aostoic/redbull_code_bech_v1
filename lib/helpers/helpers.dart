@@ -1,3 +1,4 @@
+export 'package:redbull_code_bech_v1/helpers/app_firebase_collections.dart';
 export 'package:redbull_code_bech_v1/helpers/colors.dart';
 export 'package:redbull_code_bech_v1/helpers/environment.dart';
 export 'package:redbull_code_bech_v1/helpers/fade_in_navigation.dart';
