@@ -18,6 +18,7 @@ class Tournament {
   String gameId;
   TournamentCategory tournamentCategory;
   String urlImage;
+  int playersQuantity;
 
   Tournament({
     required this.id,
@@ -27,5 +28,6 @@ class Tournament {
     required this.gameId,
     required this.tournamentCategory,
     required this.urlImage,
+    required this.playersQuantity,
   });
 }
