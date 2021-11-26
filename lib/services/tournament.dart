@@ -51,33 +51,31 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Tournament> _myTournaments = [];
+  List<Tournament> get myTournaments => _myTournaments;
+
+  set myTournaments(List<Tournament> values) {
+    _myTournaments = values;
+    notifyListeners();
+  }
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   Future<List<Tournament>> getMyTournaments() async {
     try {
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
           .get();
 
-      if (result.docs.isEmpty) {
-        return [];
-      }
-
-      List<Tournament> tournaments = result.docs.map((e) {
-        return Tournament(
-          id: e.id,
-          title: e.data()['title'],
-          description: e.data()['description'],
-          status: e.data()['status'],
-          game: e.data()['game'],
-          urlImage: e.data()['urlImage'],
-          playersQuantity: e.data()['playersQuantity'],
-          ownerId: e.data()['ownerId'],
-        );
-      }).toList();
-
-      print(tournaments);
-
-      return [];
+      return Tournament.getListFromFirebase(result.docs);
     } catch (err) {
+      print("getMyTournaments err: ${err.toString()}");
       return [];
     }
   }

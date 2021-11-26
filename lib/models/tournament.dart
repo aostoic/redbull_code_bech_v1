@@ -41,7 +41,7 @@ class Tournament {
         "ownerId": ownerId,
       };
 
-  static List<Tournament> getListFromFirebase(docs) {
+  static List<Tournament> getListFromFirebase(List<dynamic> docs) {
     List<Tournament> tournaments = docs.map((e) {
       return Tournament(
         id: e.id,
