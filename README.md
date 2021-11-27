@@ -23,21 +23,21 @@
 
 ## Configuracion gs
 
-1. [Instalacion Consola Local](https://cloud.google.com/storage/docs/gsutil_install)
-
-2. Se configura cors libres.
+1. [Docs](https://cloud.google.com/storage/docs/configuring-cors#gsutil)
+2. [Instalacion Consola Local](https://cloud.google.com/storage/docs/gsutil_install)
+3. Se configura cors libres.
 
    ```
    echo [{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}] > cors-config.json
    ```
 
-3. Seteamos nuevos cors
+4. Seteamos nuevos cors
 
    ```txt
    gsutil cors set cors-config.json gs://redbull-code-bech.appspot.com`
    ```
 
-4. Validamos cors
+5. Validamos cors
    ```txt
    gsutil cors get gs://redbull-code-bech.appspot.com`
    ```
