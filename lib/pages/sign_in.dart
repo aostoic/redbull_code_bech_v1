@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -60,6 +61,16 @@ class SignInPage extends StatelessWidget {
       );
     }
 
+    bool buttonView = true;
+
+    if (kIsWeb) {
+      buttonView = false;
+    } else {
+      if (Platform.isIOS) {
+        buttonView = true;
+      }
+    }
+
     return FlutterLogin(
       title: 'RBC Team',
       logo: 'assets/red-bull-code-app-icon.png',
@@ -68,7 +79,7 @@ class SignInPage extends StatelessWidget {
       onSubmitAnimationCompleted: () => handleOnSubmitAnimationCompleted(),
       onRecoverPassword: restartPassword,
       loginProviders: <LoginProvider>[
-        if (Platform.isIOS)
+        if (buttonView)
           LoginProvider(
             icon: FontAwesomeIcons.apple,
             label: 'Apple',

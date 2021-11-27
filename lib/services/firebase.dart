@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/foundation.dart';
+// import 'package:permission_handler/permission_handler.dart';
 
 class FirebaseService extends ChangeNotifier {
   static final FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -14,23 +17,28 @@ class FirebaseService extends ChangeNotifier {
   }
 
   FirebaseService() {
-    getToken();
-    getPermissions();
+    if (!kIsWeb) {
+      getToken();
+      if (Platform.isIOS) {
+        // getPermissions();
 
-    FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenedApp);
-    FirebaseMessaging.onMessage.listen(_onMessage);
-    FirebaseMessaging.onBackgroundMessage(_messageHandler);
-  }
-
-  Future getPermissions() async {
-    if (await Permission.notification.request().isGranted) {
-      print("Permissions Granted");
-    } else {
-      PermissionStatus status = await Permission.notification.status;
-      print("Permission: ${status.name}");
-      final result = await Permission.notification.request();
+        FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenedApp);
+        FirebaseMessaging.onMessage.listen(_onMessage);
+        FirebaseMessaging.onBackgroundMessage(_messageHandler);
+      }
     }
   }
+
+  // Future getPermissions() async {
+  //   if (await Permission.notification.request().isGranted) {
+  //     print("Permissions Granted");
+  //   } else {
+  //     PermissionStatus status = await Permission.notification.status;
+  //     // ignore: avoid_print
+  //     // print("Permission: ${status.name}");
+  //     final result = await Permission.notification.request();
+  //   }
+  // }
 
   Future<void> getToken() async {
     String? token = await messaging.getToken();

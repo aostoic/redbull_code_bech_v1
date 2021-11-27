@@ -49,6 +49,7 @@ android {
         applicationId "cl.redbullcode.redbull_bech_app"
         minSdkVersion 21
         targetSdkVersion 30
+        // compileSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }

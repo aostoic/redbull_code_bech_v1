@@ -32,7 +32,6 @@ class TournamentService extends ChangeNotifier {
     try {
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
-          .where('ownerId', isEqualTo: ownerId)
           .get();
 
       final tournaments = Tournament.getListFromFirebase(result.docs);

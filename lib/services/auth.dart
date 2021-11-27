@@ -136,22 +136,32 @@ class AuthService extends ChangeNotifier {
 
   Future<String> googleLogin() async {
     try {
-      final googleUser = await _googleSignIn.signIn();
+      final result;
+      if (kIsWeb) {
+        GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-      if (googleUser == null) {
-        return 'No se completo el proceso de inicio de sesión';
+        googleProvider
+            .addScope('https://www.googleapis.com/auth/contacts.readonly');
+        googleProvider.setCustomParameters({'login_hint': 'user@example.com'});
+
+        // Once signed in, return the UserCredential
+        result = await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      } else {
+        final googleUser = await _googleSignIn.signIn();
+
+        if (googleUser == null) {
+          return 'No se completo el proceso de inicio de sesión';
+        }
+
+        final googleAuth = await googleUser.authentication;
+
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+
+        result = await FirebaseAuth.instance.signInWithCredential(credential);
       }
-
-      final googleAuth = await googleUser.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final result =
-          await FirebaseAuth.instance.signInWithCredential(credential);
-
       _user = result.user;
 
       return '';
