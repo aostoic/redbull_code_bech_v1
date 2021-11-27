@@ -61,7 +61,7 @@ class SignInPage extends StatelessWidget {
       );
     }
 
-    bool buttonView = true;
+    bool buttonView = false;
 
     if (kIsWeb) {
       buttonView = false;

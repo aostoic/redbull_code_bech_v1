@@ -71,7 +71,7 @@ class PlayerProfileOptions extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: size.height * 0.15,
+      // height: size.height * 0.15,
       decoration: const BoxDecoration(
         color: Colors.white,
       ),

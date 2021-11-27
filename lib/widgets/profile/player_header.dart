@@ -16,7 +16,7 @@ class PlayerHeader extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.4,
+      // height: size.height * 0.4,
       width: double.infinity,
       decoration: const BoxDecoration(
         color: Colors.white,
