@@ -38,7 +38,13 @@
    echo [{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}] > cors-config.json
 
 3. Seteamos nuevos cors
-   `gsutil cors set cors-config.json gs://redbull-code-bech.appspot.com`
+
+   ```txt
+   gsutil cors set cors-config.json gs://redbull-code-bech.appspot.com`
+   ```
 
 4. Validamos cors
-   `gsutil cors get gs://redbull-code-bech.appspot.com`
+   ````txt
+   gsutil cors get gs://redbull-code-bech.appspot.com`
+      ```
+   ````
