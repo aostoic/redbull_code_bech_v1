@@ -35,7 +35,10 @@
 1. [Instalacion Consola Local](https://cloud.google.com/storage/docs/gsutil_install)
 
 2. Se configura cors libres.
+
+   ```
    echo [{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}] > cors-config.json
+   ```
 
 3. Seteamos nuevos cors
 
@@ -44,7 +47,6 @@
    ```
 
 4. Validamos cors
-   ````txt
+   ```txt
    gsutil cors get gs://redbull-code-bech.appspot.com`
-      ```
-   ````
+   ```
