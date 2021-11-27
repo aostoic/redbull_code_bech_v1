@@ -29,3 +29,16 @@
 2. Alejandro Hernández
    - Github: [@alejandrehl]()
    - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)
+
+## Configuracion gs
+
+1. [Instalacion Consola Local](https://cloud.google.com/storage/docs/gsutil_install)
+
+2. Se configura cors libres.
+   echo [{"origin": ["*"],"responseHeader": ["Content-Type"],"method": ["GET", "HEAD"],"maxAgeSeconds": 3600}] > cors-config.json
+
+3. Seteamos nuevos cors
+   `gsutil cors set cors-config.json gs://redbull-code-bech.appspot.com`
+
+4. Validamos cors
+   `gsutil cors get gs://redbull-code-bech.appspot.com`
