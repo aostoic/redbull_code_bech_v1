@@ -21,15 +21,6 @@
 17. [Firebase FireStore](https://pub.dev/packages/cloud_firestore)
 18. [Permissions Handler](https://pub.dev/packages/permission_handler)
 
-## Developers :fire:
-
-1. Andro Ostoic
-   - Github: [@aostoic](https://github.com/aostoic)
-   - LinkedIn: [@aostoic](https://www.linkedin.com/in/aostoic/)
-2. Alejandro Hernández
-   - Github: [@alejandrehl]()
-   - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)
-
 ## Configuracion gs
 
 1. [Instalacion Consola Local](https://cloud.google.com/storage/docs/gsutil_install)
@@ -50,3 +41,12 @@
    ```txt
    gsutil cors get gs://redbull-code-bech.appspot.com`
    ```
+
+## Developers :fire:
+
+1. Andro Ostoic
+   - Github: [@aostoic](https://github.com/aostoic)
+   - LinkedIn: [@aostoic](https://www.linkedin.com/in/aostoic/)
+2. Alejandro Hernández
+   - Github: [@alejandrehl]()
+   - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)
