@@ -32,6 +32,25 @@ class TournamentService extends ChangeNotifier {
     try {
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
+          .where('ownerId', isEqualTo: ownerId)
+          .get();
+
+      final tournaments = Tournament.getListFromFirebase(result.docs);
+
+      if (tournaments.isEmpty) {
+        return null;
+      }
+
+      return tournaments;
+    } catch (err) {
+      print("getMyTournaments err: ${err.toString()}");
+    }
+  }
+
+  Future<List<Tournament>?> getTournaments() async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection(AppFirebaseCollections.tournaments)
           .get();
 
       final tournaments = Tournament.getListFromFirebase(result.docs);
