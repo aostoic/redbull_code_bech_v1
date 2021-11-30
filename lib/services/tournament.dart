@@ -36,7 +36,7 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Tournament>?> getTournaments(String ownerId) async {
+  Future<void> getTournaments(String ownerId) async {
     try {
       _isLoading = true;
 
@@ -46,11 +46,7 @@ class TournamentService extends ChangeNotifier {
 
       final tournaments = Tournament.getListFromFirebase(result.docs);
 
-      if (tournaments.isEmpty) {
-        return null;
-      }
-
-      return tournaments;
+      _tournaments = tournaments;
     } catch (err) {
       print("getTournaments err: ${err.toString()}");
     } finally {
@@ -58,7 +54,7 @@ class TournamentService extends ChangeNotifier {
     }
   }
 
-  Future<List<Tournament>?> getMyTournaments(String ownerId) async {
+  Future<void> getMyTournaments(String ownerId) async {
     try {
       isLoading = true;
 
@@ -69,11 +65,7 @@ class TournamentService extends ChangeNotifier {
 
       final tournaments = Tournament.getListFromFirebase(result.docs);
 
-      if (tournaments.isEmpty) {
-        return null;
-      }
-
-      return tournaments;
+      _myTournaments = tournaments;
     } catch (err) {
       print("getMyTournaments err: ${err.toString()}");
     } finally {

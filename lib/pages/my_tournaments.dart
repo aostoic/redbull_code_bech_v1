@@ -11,7 +11,7 @@ class MyTournamentsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
+    final authService = Provider.of<AuthService>(context, listen: false);
     final tournamentService = Provider.of<TournamentService>(context);
 
     useEffect(() {
