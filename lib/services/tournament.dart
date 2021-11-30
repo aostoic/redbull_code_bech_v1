@@ -28,8 +28,18 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   Future<List<Tournament>?> getTournaments(String ownerId) async {
     try {
+      _isLoading = true;
+
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
           .get();
@@ -43,11 +53,15 @@ class TournamentService extends ChangeNotifier {
       return tournaments;
     } catch (err) {
       print("getTournaments err: ${err.toString()}");
+    } finally {
+      _isLoading = false;
     }
   }
 
   Future<List<Tournament>?> getMyTournaments(String ownerId) async {
     try {
+      isLoading = true;
+
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
           .where('ownerId', isEqualTo: ownerId)
@@ -62,6 +76,8 @@ class TournamentService extends ChangeNotifier {
       return tournaments;
     } catch (err) {
       print("getMyTournaments err: ${err.toString()}");
+    } finally {
+      isLoading = false;
     }
   }
 }
