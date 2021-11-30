@@ -48,5 +48,5 @@
    - Github: [@aostoic](https://github.com/aostoic)
    - LinkedIn: [@aostoic](https://www.linkedin.com/in/aostoic/)
 2. Alejandro Hernández
-   - Github: [@alejandrehl]()
+   - Github: [@alejandrehl](https://github.com/alejandrehl)
    - LinkedIn: [@alejandrrhernandez](https://www.linkedin.com/in/alejandrrhernandez/)
