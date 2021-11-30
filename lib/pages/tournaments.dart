@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
@@ -56,26 +57,44 @@ class TournamentsPage extends HookWidget {
         title: const Text('Torneos'),
       ),
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: VerticalCardPager(
-                titles: titles, // required
-                images: images, // required
-                textStyle: const TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Ubuntu',
-                  fontWeight: FontWeight.bold,
-                ),
-                onPageChanged: (page) {},
-                onSelectedItem: (index) => goToTournament(
-                  tournaments[index],
-                ),
-                initialPage: 0,
-                align: ALIGN.CENTER,
-              ),
-            ),
-          ],
+        child: Container(
+          child: tournamentService.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : tournamentService.tournaments.isEmpty
+                  ? const Center(
+                      child: Text(
+                        'Aún no se han creado torneos',
+                        style: TextStyle(
+                          fontFamily: 'Ubuntu',
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                          color: AppColors.backgroundDarkColor,
+                        ),
+                      ),
+                    )
+                  : Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: VerticalCardPager(
+                            titles: titles, // required
+                            images: images, // required
+                            textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Ubuntu',
+                              fontWeight: FontWeight.bold,
+                            ),
+                            onPageChanged: (page) {},
+                            onSelectedItem: (index) => goToTournament(
+                              tournaments[index],
+                            ),
+                            initialPage: 0,
+                            align: ALIGN.CENTER,
+                          ),
+                        ),
+                      ],
+                    ),
         ),
       ),
     );
