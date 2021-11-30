@@ -28,6 +28,24 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<List<Tournament>?> getTournaments(String ownerId) async {
+    try {
+      final result = await FirebaseFirestore.instance
+          .collection(AppFirebaseCollections.tournaments)
+          .get();
+
+      final tournaments = Tournament.getListFromFirebase(result.docs);
+
+      if (tournaments.isEmpty) {
+        return null;
+      }
+
+      return tournaments;
+    } catch (err) {
+      print("getTournaments err: ${err.toString()}");
+    }
+  }
+
   Future<List<Tournament>?> getMyTournaments(String ownerId) async {
     try {
       final result = await FirebaseFirestore.instance
