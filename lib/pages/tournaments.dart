@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
@@ -55,6 +56,16 @@ class TournamentsPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Torneos'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed(
+          CreateTournamentPage.routeName,
+        ),
+        backgroundColor: AppColors.backgroundDarkColor,
+        child: const Icon(
+          FontAwesomeIcons.plus,
+          color: Colors.white,
+        ),
       ),
       body: SafeArea(
         child: Container(
