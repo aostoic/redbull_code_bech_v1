@@ -26,6 +26,12 @@ class _CreateForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final form = Provider.of<CreateTournamentForm>(context);
+
+    return Form(
+      key: form.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Column(),
+    );
   }
 }
