@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/forms/forms.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class CreateTournamentPage extends StatelessWidget {
   static String routeName = '/create-tournament';
@@ -31,16 +33,57 @@ class _CreateForm extends StatelessWidget {
     final form = Provider.of<CreateTournamentForm>(context);
 
     return Container(
-      padding: const EdgeInsets.all(30),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       height: size.height * 1,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: AppColors.backgroundDarkColor,
+      ),
       child: Form(
         key: form.formKey,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: SingleChildScrollView(
-          child: Column(
-            children: const [
-              UploadImageContainer(),
-            ],
+          child: SizedBox(
+            height: size.height * 0.75,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const UploadImageContainer(),
+                PrimaryInput(
+                  keyboardType: TextInputType.text,
+                  hinText: 'Ingresa título...',
+                  labelText: 'Título',
+                  prefixIcon: FontAwesomeIcons.trophy,
+                  onChanged: (value) => print(value),
+                ),
+                PrimaryInput(
+                  keyboardType: TextInputType.text,
+                  hinText: 'Ingresa juego...',
+                  labelText: 'Juego',
+                  prefixIcon: FontAwesomeIcons.gamepad,
+                  onChanged: (value) => print(value),
+                ),
+                PrimaryInput(
+                  keyboardType: TextInputType.text,
+                  hinText: 'Ingresa descripción...',
+                  labelText: 'Descripción',
+                  prefixIcon: FontAwesomeIcons.bookOpen,
+                  onChanged: (value) => print(value),
+                ),
+                PrimaryInput(
+                  keyboardType: TextInputType.number,
+                  hinText: '0',
+                  labelText: 'Cantidad de jugadores (4, 8 o 16)',
+                  prefixIcon: FontAwesomeIcons.users,
+                  onChanged: (value) => print(value),
+                ),
+                PrimaryButton(
+                  text: 'Crear torneo',
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         ),
       ),
