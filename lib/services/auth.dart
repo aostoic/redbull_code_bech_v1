@@ -70,6 +70,10 @@ class AuthService extends ChangeNotifier {
     return true;
   }
 
+  Future getUsers() async {
+    return auth.currentUser!.uid;
+  }
+
   Future<String?> createUserWithEmailAndPassword(email, password) async {
     try {
       UserCredential result =

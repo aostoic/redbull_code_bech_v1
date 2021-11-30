@@ -23,12 +23,12 @@ class InputDecorations {
       ),
       hintText: hinText,
       hintStyle: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontFamily: 'Ubuntu',
       ),
       labelText: labelText,
       labelStyle: const TextStyle(
-        color: Colors.white,
+        color: Colors.black,
         fontFamily: 'Ubuntu',
       ),
       prefixIcon: prefixIcon != null

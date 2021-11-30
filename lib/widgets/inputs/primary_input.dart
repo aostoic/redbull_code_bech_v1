@@ -25,6 +25,7 @@ class PrimaryInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: Colors.black,
       autocorrect: false,
       keyboardType: keyboardType,
       decoration: InputDecorations.primaryInputDecoration(
