@@ -32,6 +32,19 @@ class _CreateForm extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final form = Provider.of<CreateTournamentForm>(context);
 
+    void _submit() async {
+      FocusScope.of(context).unfocus();
+
+      if (!form.isValidForm()) {
+        AppAlerts.showAlert(
+          context,
+          'Error',
+          'Verifica los datos ingresados',
+        );
+        return;
+      }
+    }
+
     return Container(
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(20),
@@ -56,6 +69,13 @@ class _CreateForm extends StatelessWidget {
                   labelText: 'Título',
                   prefixIcon: FontAwesomeIcons.trophy,
                   onChanged: (value) => print(value),
+                  validator: (String value) {
+                    if (value.length < 8) {
+                      return 'Ingresar mínimo 8 carácteres';
+                    }
+
+                    return null;
+                  },
                 ),
                 PrimaryInput(
                   keyboardType: TextInputType.text,
@@ -63,6 +83,13 @@ class _CreateForm extends StatelessWidget {
                   labelText: 'Juego',
                   prefixIcon: FontAwesomeIcons.gamepad,
                   onChanged: (value) => print(value),
+                  validator: (String value) {
+                    if (value.length < 3) {
+                      return 'Ingresa nombre de juego válido';
+                    }
+
+                    return null;
+                  },
                 ),
                 PrimaryInput(
                   keyboardType: TextInputType.text,
@@ -74,13 +101,20 @@ class _CreateForm extends StatelessWidget {
                 PrimaryInput(
                   keyboardType: TextInputType.number,
                   hinText: '0',
-                  labelText: 'Cantidad de jugadores (4, 8 o 16)',
+                  labelText: 'Cantidad de jugadores (4, 8 o 12)',
                   prefixIcon: FontAwesomeIcons.users,
                   onChanged: (value) => print(value),
+                  validator: (String value) {
+                    if (value != "4" && value != "8" && value != "12") {
+                      return 'Ingresa 4, 8 o 12';
+                    }
+
+                    return null;
+                  },
                 ),
                 PrimaryButton(
                   text: 'Crear torneo',
-                  onPressed: () {},
+                  onPressed: () => _submit(),
                 ),
               ],
             ),

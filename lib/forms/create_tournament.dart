@@ -50,4 +50,8 @@ class CreateTournamentForm with ChangeNotifier {
     _isLoading = value;
     notifyListeners();
   }
+
+  bool isValidForm() {
+    return formKey.currentState?.validate() ?? false;
+  }
 }
