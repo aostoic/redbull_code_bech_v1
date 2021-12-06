@@ -1,4 +1,5 @@
 export 'package:redbull_code_bech_v1/pages/create_tournament.dart';
+export 'package:redbull_code_bech_v1/pages/games.dart';
 export 'package:redbull_code_bech_v1/pages/home.dart';
 export 'package:redbull_code_bech_v1/pages/loading.dart';
 export 'package:redbull_code_bech_v1/pages/my_tournaments.dart';

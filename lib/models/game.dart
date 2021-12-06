@@ -29,9 +29,9 @@ class Game {
     List<Game> games = docs.map((e) {
       return Game(
         id: e.id,
-        name: e.name,
-        type: e.type,
-        portraitUrl: e.portraitUrl,
+        name: e["name"],
+        type: e["type"],
+        portraitUrl: e["portraitUrl"],
       );
     }).toList();
 
