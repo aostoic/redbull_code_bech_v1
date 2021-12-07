@@ -1,5 +1,3 @@
-import 'package:redbull_code_bech_v1/models/models.dart';
-
 class Tournament {
   String id;
   String title;
@@ -8,8 +6,8 @@ class Tournament {
   String gameId;
   int playersQuantity;
   String ownerId;
-  List<String> winnerIds;
-  List<Player> players;
+  List<dynamic> winnerIds;
+  List<dynamic> players;
 
   Tournament({
     required this.id,
