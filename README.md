@@ -22,6 +22,7 @@
 18. [Permissions Handler](https://pub.dev/packages/permission_handler)
 19. [Direct Select](https://pub.dev/packages/direct_select)
 20. [UUID](https://pub.dev/packages/uuid)
+21. [Grouped List](https://pub.dev/packages/grouped_list)
 
 ## Configuracion gs
 

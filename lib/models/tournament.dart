@@ -1,3 +1,5 @@
+import 'package:redbull_code_bech_v1/models/models.dart';
+
 class Tournament {
   String id;
   String title;
@@ -6,15 +8,19 @@ class Tournament {
   String gameId;
   int playersQuantity;
   String ownerId;
+  List<String> winnerIds;
+  List<Player> players;
 
   Tournament({
     required this.id,
     required this.title,
     required this.description,
-    required this.status,
+    this.status = 'waiting',
     required this.gameId,
     required this.playersQuantity,
     required this.ownerId,
+    required this.winnerIds,
+    required this.players,
   });
 
   factory Tournament.fromJson(Map<String, dynamic> json) => Tournament(
@@ -25,6 +31,8 @@ class Tournament {
         gameId: json["gameId"],
         playersQuantity: json["playersQuantity"],
         ownerId: json["ownerId"],
+        winnerIds: json["winnerIds"],
+        players: json["players"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -35,6 +43,8 @@ class Tournament {
         "gameId": gameId,
         "playersQuantity": playersQuantity,
         "ownerId": ownerId,
+        "winnerIds": winnerIds,
+        "players": players,
       };
 
   static List<Tournament> getListFromFirebase(List<dynamic> docs) {
@@ -47,6 +57,8 @@ class Tournament {
         gameId: e.data()['gameId'],
         playersQuantity: e.data()['playersQuantity'],
         ownerId: e.data()['ownerId'],
+        winnerIds: e.data()['winnerIds'],
+        players: e.data()['players'],
       );
     }).toList();
 

@@ -87,6 +87,8 @@ class TournamentService extends ChangeNotifier {
         gameId: gameId,
         playersQuantity: playersQuantity,
         ownerId: ownerId,
+        players: [],
+        winnerIds: [],
       );
 
       await FirebaseFirestore.instance
