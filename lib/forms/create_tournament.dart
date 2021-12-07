@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 class CreateTournamentForm with ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey();
 
-  String _urlImage = '';
-  String get urlImage => _urlImage;
-
-  set urlImage(String value) {
-    _urlImage = value;
-    notifyListeners();
-  }
-
   String _title = '';
   String get title => _title;
 
@@ -40,14 +32,6 @@ class CreateTournamentForm with ChangeNotifier {
 
   set playersQuantity(int value) {
     _playersQuantity = value;
-    notifyListeners();
-  }
-
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  set isLoading(bool value) {
-    _isLoading = value;
     notifyListeners();
   }
 

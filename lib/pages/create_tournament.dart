@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/forms/forms.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
+import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
@@ -34,7 +35,9 @@ class _CreateForm extends HookWidget {
     final size = MediaQuery.of(context).size;
     final form = Provider.of<CreateTournamentForm>(context);
 
-    final gameService = Provider.of<GameService>(context);
+    final gameService = Provider.of<GameService>(context, listen: false);
+    final tournamentService = Provider.of<TournamentService>(context);
+    final authService = Provider.of<AuthService>(context);
 
     useEffect(() {
       Future.delayed(Duration.zero, () {
@@ -55,6 +58,27 @@ class _CreateForm extends HookWidget {
         );
         return;
       }
+
+      final Tournament? newTournament =
+          await tournamentService.createTournament(
+        form.title,
+        form.description,
+        form.playersQuantity,
+        form.gameId,
+        authService.user!.uid,
+      );
+
+      if (newTournament == null) {
+        AppAlerts.showAlert(
+          context,
+          'Error',
+          'Ocurrió un error al crear el torneo',
+        );
+        return;
+      }
+
+      tournamentService.myTournaments.add(newTournament);
+      Navigator.of(context).pop();
     }
 
     return Container(
@@ -97,7 +121,7 @@ class _CreateForm extends HookWidget {
                     hinText: 'Ingresa título...',
                     labelText: 'Título',
                     prefixIcon: FontAwesomeIcons.trophy,
-                    onChanged: (value) => print(value),
+                    onChanged: (value) => form.title = value,
                     validator: (String value) {
                       if (value.length < 5) {
                         return 'Ingresar mínimo 5 caracteres';
@@ -111,7 +135,7 @@ class _CreateForm extends HookWidget {
                     hinText: 'Ingresa descripción...',
                     labelText: 'Descripción',
                     prefixIcon: FontAwesomeIcons.bookOpen,
-                    onChanged: (value) => print(value),
+                    onChanged: (value) => form.description = value,
                     validator: (String value) {
                       if (value.length < 10) {
                         return 'Ingresar mínimo 10 caracteres';
@@ -125,7 +149,8 @@ class _CreateForm extends HookWidget {
                     hinText: '0',
                     labelText: 'Cantidad de jugadores (4, 8 o 12)',
                     prefixIcon: FontAwesomeIcons.users,
-                    onChanged: (value) => print(value),
+                    onChanged: (String value) =>
+                        form.playersQuantity = int.parse(value),
                     validator: (String value) {
                       if (value != "4" && value != "8" && value != "12") {
                         return 'Ingresa 4, 8 o 12';
@@ -137,6 +162,7 @@ class _CreateForm extends HookWidget {
                   PrimaryButton(
                     text: 'Crear torneo',
                     onPressed: () => _submit(),
+                    isLoading: tournamentService.isLoading,
                   ),
                 ],
               ),

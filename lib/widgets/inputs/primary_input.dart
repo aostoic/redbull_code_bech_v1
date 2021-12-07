@@ -9,7 +9,6 @@ class PrimaryInput extends StatelessWidget {
   final IconData prefixIcon;
   final Function onChanged;
   final Function? validator;
-  final bool withSpaces;
 
   const PrimaryInput({
     Key? key,
@@ -19,7 +18,6 @@ class PrimaryInput extends StatelessWidget {
     required this.prefixIcon,
     required this.onChanged,
     this.validator,
-    this.withSpaces = false,
   }) : super(key: key);
 
   @override
@@ -35,9 +33,7 @@ class PrimaryInput extends StatelessWidget {
       ),
       onChanged: (value) => onChanged(value),
       validator: (value) => validator != null ? validator!(value) : null,
-      inputFormatters: [
-        if (!withSpaces) FilteringTextInputFormatter.deny(RegExp(r"\s")),
-      ],
+      inputFormatters: [],
     );
   }
 }

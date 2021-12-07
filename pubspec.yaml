@@ -32,6 +32,7 @@ dependencies:
   permission_handler: ^8.3.0
   babstrap_settings_screen: ^0.1.1
   direct_select: ^2.0.0
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:

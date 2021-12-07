@@ -3,8 +3,7 @@ class Tournament {
   String title;
   String description;
   String status;
-  String game;
-  String urlImage;
+  String gameId;
   int playersQuantity;
   String ownerId;
 
@@ -13,8 +12,7 @@ class Tournament {
     required this.title,
     required this.description,
     required this.status,
-    required this.game,
-    required this.urlImage,
+    required this.gameId,
     required this.playersQuantity,
     required this.ownerId,
   });
@@ -24,8 +22,7 @@ class Tournament {
         title: json["title"],
         description: json["description"],
         status: json["status"],
-        game: json["id"],
-        urlImage: json["urlImage"],
+        gameId: json["gameId"],
         playersQuantity: json["playersQuantity"],
         ownerId: json["ownerId"],
       );
@@ -35,8 +32,7 @@ class Tournament {
         "title": title,
         "description": description,
         "status": status,
-        "game": game,
-        "urlImage": urlImage,
+        "gameId": gameId,
         "playersQuantity": playersQuantity,
         "ownerId": ownerId,
       };
@@ -48,8 +44,7 @@ class Tournament {
         title: e.data()['title'],
         description: e.data()['description'],
         status: e.data()['status'],
-        game: e.data()['game'],
-        urlImage: e.data()['urlImage'],
+        gameId: e.data()['gameId'],
         playersQuantity: e.data()['playersQuantity'],
         ownerId: e.data()['ownerId'],
       );
