@@ -36,15 +36,16 @@ class LoadingPage extends HookWidget {
         if (!kIsWeb) {
           goToPage(OnboardingPage());
         } else {
-          goToPage(SignInPage());
+          goToPage(const SignInPage());
         }
       } else {
-        final existInBd = await userService.getUser(authService.getUsers());
+        final existInBd =
+            await userService.getUser(await authService.getUsers());
 
-        if (existInBd != null) {
-          goToPage(CompleteLoginPage());
+        if (existInBd == null) {
+          goToPage(const CompleteLoginPage());
         } else {
-          goToPage(HomePage());
+          goToPage(const HomePage());
         }
       }
     }
