@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
-import 'package:vertical_card_pager/vertical_card_pager.dart';
 
 class MyTournamentsPage extends HookWidget {
   static String routeName = '/my-tournaments';
@@ -31,6 +31,16 @@ class MyTournamentsPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mis Torneos'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed(
+          CreateTournamentPage.routeName,
+        ),
+        backgroundColor: AppColors.backgroundDarkColor,
+        child: const Icon(
+          FontAwesomeIcons.plus,
+          color: Colors.white,
+        ),
       ),
       body: Container(
         child: tournamentService.isLoading
