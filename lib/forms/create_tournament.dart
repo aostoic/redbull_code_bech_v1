@@ -19,11 +19,11 @@ class CreateTournamentForm with ChangeNotifier {
     notifyListeners();
   }
 
-  String _game = '';
-  String get game => _game;
+  String _gameId = '';
+  String get gameId => _gameId;
 
-  set game(String value) {
-    _game = value;
+  set gameId(String value) {
+    _gameId = value;
     notifyListeners();
   }
 

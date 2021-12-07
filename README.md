@@ -20,6 +20,7 @@
 16. [Horizontal Card](https://pub.dev/packages/horizontal_card_pager)
 17. [Firebase FireStore](https://pub.dev/packages/cloud_firestore)
 18. [Permissions Handler](https://pub.dev/packages/permission_handler)
+19. [Direct Select](https://pub.dev/packages/direct_select)
 
 ## Configuracion gs
 

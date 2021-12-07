@@ -13,6 +13,7 @@ final appLightTheme = ThemeData.light().copyWith(
       color: Colors.black,
       fontSize: 26,
       fontWeight: FontWeight.bold,
+      fontFamily: 'Ubuntu',
     ),
     iconTheme: const IconThemeData(
       color: Colors.black,
