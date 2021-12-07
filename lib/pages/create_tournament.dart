@@ -60,7 +60,7 @@ class _CreateForm extends HookWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(15),
-      height: size.height * 1,
+      height: size.height * 0.7,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -73,63 +73,73 @@ class _CreateForm extends HookWidget {
           )
         ],
       ),
-      child: Form(
-        key: form.formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: SingleChildScrollView(
-          child: SizedBox(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (form.gameId.isNotEmpty)
-                  AppDropdownInput(
-                    labelText: 'Game',
-                    hintText: "Game",
-                    prefixIcon: FontAwesomeIcons.gamepad,
-                    options: gameService.games,
-                    value: form.gameId,
-                    onChanged: (String value) => form.gameId = value,
+      child: Center(
+        child: Form(
+          key: form.formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: size.height * 0.5,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (form.gameId.isNotEmpty)
+                    AppDropdownInput(
+                      labelText: 'Game',
+                      hintText: "Game",
+                      prefixIcon: FontAwesomeIcons.gamepad,
+                      options: gameService.games,
+                      value: form.gameId,
+                      onChanged: (String value) => form.gameId = value,
+                    ),
+                  PrimaryInput(
+                    keyboardType: TextInputType.text,
+                    hinText: 'Ingresa título...',
+                    labelText: 'Título',
+                    prefixIcon: FontAwesomeIcons.trophy,
+                    onChanged: (value) => print(value),
+                    validator: (String value) {
+                      if (value.length < 5) {
+                        return 'Ingresar mínimo 5 caracteres';
+                      }
+
+                      return null;
+                    },
                   ),
-                PrimaryInput(
-                  keyboardType: TextInputType.text,
-                  hinText: 'Ingresa título...',
-                  labelText: 'Título',
-                  prefixIcon: FontAwesomeIcons.trophy,
-                  onChanged: (value) => print(value),
-                  validator: (String value) {
-                    if (value.length < 5) {
-                      return 'Ingresar mínimo 5 caracteres';
-                    }
+                  PrimaryInput(
+                    keyboardType: TextInputType.text,
+                    hinText: 'Ingresa descripción...',
+                    labelText: 'Descripción',
+                    prefixIcon: FontAwesomeIcons.bookOpen,
+                    onChanged: (value) => print(value),
+                    validator: (String value) {
+                      if (value.length < 10) {
+                        return 'Ingresar mínimo 10 caracteres';
+                      }
 
-                    return null;
-                  },
-                ),
-                PrimaryInput(
-                  keyboardType: TextInputType.text,
-                  hinText: 'Ingresa descripción...',
-                  labelText: 'Descripción',
-                  prefixIcon: FontAwesomeIcons.bookOpen,
-                  onChanged: (value) => print(value),
-                ),
-                PrimaryInput(
-                  keyboardType: TextInputType.number,
-                  hinText: '0',
-                  labelText: 'Cantidad de jugadores (4, 8 o 12)',
-                  prefixIcon: FontAwesomeIcons.users,
-                  onChanged: (value) => print(value),
-                  validator: (String value) {
-                    if (value != "4" && value != "8" && value != "12") {
-                      return 'Ingresa 4, 8 o 12';
-                    }
+                      return null;
+                    },
+                  ),
+                  PrimaryInput(
+                    keyboardType: TextInputType.number,
+                    hinText: '0',
+                    labelText: 'Cantidad de jugadores (4, 8 o 12)',
+                    prefixIcon: FontAwesomeIcons.users,
+                    onChanged: (value) => print(value),
+                    validator: (String value) {
+                      if (value != "4" && value != "8" && value != "12") {
+                        return 'Ingresa 4, 8 o 12';
+                      }
 
-                    return null;
-                  },
-                ),
-                PrimaryButton(
-                  text: 'Crear torneo',
-                  onPressed: () => _submit(),
-                ),
-              ],
+                      return null;
+                    },
+                  ),
+                  PrimaryButton(
+                    text: 'Crear torneo',
+                    onPressed: () => _submit(),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
