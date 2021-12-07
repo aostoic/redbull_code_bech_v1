@@ -17,9 +17,16 @@ class PlayerHeader extends StatelessWidget {
 
     return Container(
       // height: size.height * 0.4,
-      width: double.infinity,
+      // width: double.infinity,
+
       decoration: const BoxDecoration(
         color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,6 +51,7 @@ class PlayerHeader extends StatelessWidget {
           const TournamentsPartHeader(),
           const SizedBox(height: 20),
           const GamesPartHeader(),
+          const SizedBox(height: 20),
         ],
       ),
     );

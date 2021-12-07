@@ -25,67 +25,10 @@ class ProfilePage extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: ListView(
               children: [
+                PlayerHeader(player: authService.user!),
+                const SizedBox(height: 30),
+                PlayerProfileOptions(player: authService.user!),
                 // user card
-                SimpleUserCard(
-                  userName: authService.user!.email!,
-                  userProfilePic: NetworkImage(
-                    NetworkImages.defaultProfileImage1,
-                  ),
-                ),
-                SettingsGroup(
-                  items: [
-                    SettingsItem(
-                      onTap: () {},
-                      icons: FontAwesomeIcons.xRay,
-                      iconStyle: IconStyle(),
-                      title: 'Appearance',
-                      subtitle: "Make Ziar'App yours",
-                    ),
-                    SettingsItem(
-                      onTap: () {},
-                      icons: Icons.fingerprint,
-                      iconStyle: IconStyle(
-                        iconsColor: Colors.white,
-                        withBackground: true,
-                        backgroundColor: Colors.red,
-                      ),
-                      title: 'Privacy',
-                      subtitle: "Lock Ziar'App to improve your privacy",
-                    ),
-                    SettingsItem(
-                      onTap: () {},
-                      icons: Icons.dark_mode_rounded,
-                      iconStyle: IconStyle(
-                        iconsColor: Colors.white,
-                        withBackground: true,
-                        backgroundColor: Colors.red,
-                      ),
-                      title: 'Dark mode',
-                      titleStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      subtitle: "Automatic",
-                      trailing: Switch.adaptive(
-                        value: false,
-                        onChanged: (value) {},
-                      ),
-                    ),
-                  ],
-                ),
-                SettingsGroup(
-                  items: [
-                    SettingsItem(
-                      onTap: () {},
-                      icons: Icons.info_rounded,
-                      iconStyle: IconStyle(
-                        backgroundColor: Colors.purple,
-                      ),
-                      title: 'About',
-                      subtitle: "Learn more about Ziar'App",
-                    ),
-                  ],
-                ),
-                // You can add a settings title
               ],
             )));
   }
@@ -128,48 +71,52 @@ class PlayerProfileOptions extends StatelessWidget {
     return Container(
       width: double.infinity,
       // height: size.height * 0.15,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+
       child: Column(
         children: [
-          ListTile(
-            onTap: () => goToPage(MyTournamentsPage.routeName),
-            leading: const Icon(
-              FontAwesomeIcons.trophy,
-              color: AppColors.backgroundDarkColor,
-            ),
-            title: const Text(
-              'Mis torneos',
-              style: TextStyle(
-                color: AppColors.backgroundDarkColor,
-                fontFamily: 'Ubuntu',
+          SettingsGroup(
+            items: [
+              SettingsItem(
+                onTap: () => goToPage(MyTournamentsPage.routeName),
+                icons: FontAwesomeIcons.trophy,
+                titleStyle: TextStyle(
+                  color: Colors.black,
+                ),
+                iconStyle: IconStyle(
+                  backgroundColor: Colors.white,
+                  iconsColor: Colors.black,
+                ),
+                title: 'Mis Torneos',
+                subtitle: "my Tournaments",
+                trailing: const Icon(
+                  FontAwesomeIcons.arrowCircleRight,
+                  color: AppColors.backgroundDarkColor,
+                ),
               ),
-            ),
-            trailing: const Icon(
-              FontAwesomeIcons.arrowCircleRight,
-              color: AppColors.backgroundDarkColor,
-            ),
+            ],
           ),
-          const Divider(color: AppColors.backgroundDarkColor),
-          ListTile(
-            onTap: () => handleLogout(),
-            leading: const Icon(
-              FontAwesomeIcons.signOutAlt,
-              color: AppColors.backgroundDarkColor,
-            ),
-            title: const Text(
-              'Cerrar Sesión',
-              style: TextStyle(
-                color: AppColors.backgroundDarkColor,
-                fontFamily: 'Ubuntu',
+          SettingsGroup(
+            items: [
+              SettingsItem(
+                onTap: () => handleLogout(),
+                icons: FontAwesomeIcons.signOutAlt,
+                iconStyle: IconStyle(
+                  backgroundColor: Colors.white,
+                  iconsColor: Colors.black,
+                ),
+                titleStyle: TextStyle(
+                  color: Colors.black,
+                ),
+                title: 'Cerrar Sesión',
+                subtitle: "Sign out",
+                trailing: const Icon(
+                  FontAwesomeIcons.arrowCircleRight,
+                  color: AppColors.backgroundDarkColor,
+                ),
               ),
-            ),
-            trailing: const Icon(
-              FontAwesomeIcons.arrowCircleRight,
-              color: AppColors.backgroundDarkColor,
-            ),
+            ],
           ),
+          // You can add a settings title
         ],
       ),
     );
