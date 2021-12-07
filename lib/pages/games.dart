@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
+import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
@@ -21,7 +22,10 @@ class GamesPage extends HookWidget {
       });
     }, []);
 
-    void goToGame(Game game) {}
+    void goToGame(Game game) {
+      service.currentGame = game;
+      Navigator.of(context).pushNamed(GamePage.routeName);
+    }
 
     final List<String> titles = [
       for (int i = 0; i < service.games.length; i++) "" //service.games[i].name,
@@ -48,6 +52,7 @@ class GamesPage extends HookWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Juegos'),
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Container(

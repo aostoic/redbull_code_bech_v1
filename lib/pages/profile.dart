@@ -18,19 +18,21 @@ class ProfilePage extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Mi Perfil'),
+      appBar: AppBar(
+        title: const Text('Mi Perfil'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          children: [
+            PlayerHeader(player: authService.user!),
+            const SizedBox(height: 30),
+            PlayerProfileOptions(player: authService.user!),
+            // user card
+          ],
         ),
-        body: Padding(
-            padding: const EdgeInsets.all(10),
-            child: ListView(
-              children: [
-                PlayerHeader(player: authService.user!),
-                const SizedBox(height: 30),
-                PlayerProfileOptions(player: authService.user!),
-                // user card
-              ],
-            )));
+      ),
+    );
   }
 }
 
@@ -44,8 +46,6 @@ class PlayerProfileOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     final navigationService = Provider.of<NavigationService>(context);
     final authService = Provider.of<AuthService>(context);
 
@@ -79,7 +79,7 @@ class PlayerProfileOptions extends StatelessWidget {
               SettingsItem(
                 onTap: () => goToPage(MyTournamentsPage.routeName),
                 icons: FontAwesomeIcons.trophy,
-                titleStyle: TextStyle(
+                titleStyle: const TextStyle(
                   color: Colors.black,
                 ),
                 iconStyle: IconStyle(
@@ -104,7 +104,7 @@ class PlayerProfileOptions extends StatelessWidget {
                   backgroundColor: Colors.white,
                   iconsColor: Colors.black,
                 ),
-                titleStyle: TextStyle(
+                titleStyle: const TextStyle(
                   color: Colors.black,
                 ),
                 title: 'Cerrar Sesión',
