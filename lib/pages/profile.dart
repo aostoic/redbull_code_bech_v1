@@ -61,6 +61,9 @@ class ProfilePage extends StatelessWidget {
                         backgroundColor: Colors.red,
                       ),
                       title: 'Dark mode',
+                      titleStyle: TextStyle(
+                        color: Colors.black,
+                      ),
                       subtitle: "Automatic",
                       trailing: Switch.adaptive(
                         value: false,
@@ -83,30 +86,6 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
                 // You can add a settings title
-                SettingsGroup(
-                  settingsGroupTitle: "Account",
-                  items: [
-                    SettingsItem(
-                      onTap: () {},
-                      icons: Icons.exit_to_app_rounded,
-                      title: "Sign Out",
-                    ),
-                    SettingsItem(
-                      onTap: () {},
-                      icons: FontAwesomeIcons.baby,
-                      title: "Change email",
-                    ),
-                    SettingsItem(
-                      onTap: () {},
-                      icons: FontAwesomeIcons.accessibleIcon,
-                      title: "Delete account",
-                      titleStyle: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
               ],
             )));
   }

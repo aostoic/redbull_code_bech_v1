@@ -28,40 +28,44 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<List<Tournament>?> getMyTournaments(String ownerId) async {
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  set isLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> getTournaments(String ownerId) async {
     try {
+      isLoading = true;
+
+      final result = await FirebaseFirestore.instance
+          .collection(AppFirebaseCollections.tournaments)
+          .get();
+
+      tournaments = Tournament.getListFromFirebase(result.docs);
+    } catch (err) {
+      print("getTournaments err: ${err.toString()}");
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<void> getMyTournaments(String ownerId) async {
+    try {
+      isLoading = true;
+
       final result = await FirebaseFirestore.instance
           .collection(AppFirebaseCollections.tournaments)
           .where('ownerId', isEqualTo: ownerId)
           .get();
 
-      final tournaments = Tournament.getListFromFirebase(result.docs);
-
-      if (tournaments.isEmpty) {
-        return null;
-      }
-
-      return tournaments;
+      myTournaments = Tournament.getListFromFirebase(result.docs);
     } catch (err) {
       print("getMyTournaments err: ${err.toString()}");
-    }
-  }
-
-  Future<List<Tournament>?> getTournaments() async {
-    try {
-      final result = await FirebaseFirestore.instance
-          .collection(AppFirebaseCollections.tournaments)
-          .get();
-
-      final tournaments = Tournament.getListFromFirebase(result.docs);
-
-      if (tournaments.isEmpty) {
-        return null;
-      }
-
-      return tournaments;
-    } catch (err) {
-      print("getMyTournaments err: ${err.toString()}");
+    } finally {
+      isLoading = false;
     }
   }
 }

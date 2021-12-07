@@ -1,50 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
-import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:vertical_card_pager/vertical_card_pager.dart';
 
-class TournamentsPage extends HookWidget {
-  static String routeName = '/tournaments';
+class GamesPage extends HookWidget {
+  static String routeName = '/games';
 
-  const TournamentsPage({Key? key}) : super(key: key);
+  const GamesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context, listen: false);
-    final tournamentService = Provider.of<TournamentService>(context);
-
-    final List<Tournament> tournaments = tournamentService.tournaments;
+    final service = Provider.of<GameService>(context);
 
     useEffect(() {
       Future.delayed(Duration.zero, () {
-        tournamentService.getTournaments(authService.user!.uid);
+        service.getGames();
       });
     }, []);
 
-    void goToTournament(Tournament tournament) {
-      tournamentService.currentTournament = tournament;
-      Navigator.of(context).pushNamed(TournamentPage.routeName);
-    }
+    void goToGame(Game game) {}
 
     final List<String> titles = [
-      for (int i = 0; i < tournaments.length; i++) '',
+      for (int i = 0; i < service.games.length; i++) "" //service.games[i].name,
     ];
 
     final List<Widget> images = [
-      for (int i = 0; i < tournaments.length; i++)
+      for (int i = 0; i < service.games.length; i++)
         Hero(
-          tag: tournaments[i].id,
+          tag: service.games[i].id,
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               image: DecorationImage(
                 image: NetworkImage(
-                  tournaments[i].urlImage,
+                  service.games[i].portraitUrl,
                 ),
                 fit: BoxFit.cover,
               ),
@@ -55,28 +47,18 @@ class TournamentsPage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Torneos'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(
-          CreateTournamentPage.routeName,
-        ),
-        backgroundColor: AppColors.backgroundDarkColor,
-        child: const Icon(
-          FontAwesomeIcons.plus,
-          color: Colors.white,
-        ),
+        title: const Text('Juegos'),
       ),
       body: SafeArea(
         child: Container(
-          child: tournamentService.isLoading
+          child: service.isLoading
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : tournamentService.tournaments.isEmpty
+              : service.games.isEmpty
                   ? const Center(
                       child: Text(
-                        'Aún no se han creado torneos',
+                        'Aún no se han creado juegos',
                         style: TextStyle(
                           fontFamily: 'Ubuntu',
                           fontWeight: FontWeight.bold,
@@ -89,7 +71,7 @@ class TournamentsPage extends HookWidget {
                       children: <Widget>[
                         Expanded(
                           child: VerticalCardPager(
-                            titles: titles, // required
+                            titles: titles,
                             images: images, // required
                             textStyle: const TextStyle(
                               color: Colors.white,
@@ -97,9 +79,8 @@ class TournamentsPage extends HookWidget {
                               fontWeight: FontWeight.bold,
                             ),
                             onPageChanged: (page) {},
-                            onSelectedItem: (index) => goToTournament(
-                              tournaments[index],
-                            ),
+                            onSelectedItem: (index) =>
+                                goToGame(service.games[index]),
                             initialPage: 0,
                             align: ALIGN.CENTER,
                           ),

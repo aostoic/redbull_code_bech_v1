@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FirebaseService()),
         ChangeNotifierProvider(create: (_) => TournamentService()),
         ChangeNotifierProvider(create: (_) => UserService()),
+        ChangeNotifierProvider(create: (_) => GameService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

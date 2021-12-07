@@ -19,10 +19,7 @@ class HomePage extends StatelessWidget {
     final navigationService = Provider.of<NavigationService>(context);
 
     final List<Widget> _widgetOptions = <Widget>[
-      const TournamentsPage(),
-      //const PlayersPage(),
-      const ProfilePage(),
-      //const ProfilePage(),
+      const GamesPage(),
       const ProfilePage(),
     ];
 
@@ -37,10 +34,10 @@ class HomePage extends StatelessWidget {
         activeColor: AppColors.appBarColor,
         color: AppColors.disabledColor,
         items: const [
-          TabItem(icon: FontAwesomeIcons.trophy, title: 'Torneos'),
-          //TabItem(icon: FontAwesomeIcons.gamepad, title: 'Activos'),
-          TabItem(icon: FontAwesomeIcons.plus, title: 'Crear '),
-          //TabItem(icon: FontAwesomeIcons.list, title: 'Finalizados'),
+          TabItem(
+            icon: FontAwesomeIcons.gamepad,
+            title: 'Juegos',
+          ),
           TabItem(
             icon: FontAwesomeIcons.user,
             title: 'Perfil',
