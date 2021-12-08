@@ -6,6 +6,7 @@ import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
+import 'package:redbull_code_bech_v1/ui/search_bar_input_decoration.dart';
 
 class MyTournamentsPage extends HookWidget {
   static String routeName = '/my-tournaments';
@@ -30,7 +31,23 @@ class MyTournamentsPage extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mis Torneos'),
+        title: TextField(
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.done,
+          enabled: !tournamentService.isLoading,
+          style: const TextStyle(
+            fontSize: 20,
+            fontFamily: 'Ubuntu',
+            fontWeight: FontWeight.w300,
+          ),
+          decoration: SearchBarInputDecoration.searchBarInputDecoration(
+            hinText: tournamentService.isLoading ? 'Buscando..' : 'Buscar...',
+            labelText: 'Torneo',
+          ),
+          onChanged: (value) {
+            tournamentService.searchTournamentsByText(value);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).pushNamed(

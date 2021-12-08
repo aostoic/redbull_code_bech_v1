@@ -39,6 +39,44 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Tournament> _filteredTournaments = [];
+  List<Tournament> get filteredTournaments => _filteredTournaments;
+
+  set filteredTournaments(List<Tournament> values) {
+    _filteredTournaments = values;
+    notifyListeners();
+  }
+
+  String _searchText = '';
+  String get searchText => _searchText;
+
+  set searchText(String value) {
+    _searchText = value;
+    notifyListeners();
+  }
+
+  void searchTournamentsByText(String value) {
+    searchText = value;
+
+    if (value.isEmpty) {
+      filteredTournaments = [];
+    } else {
+      String finalValue = value.toLowerCase();
+
+      RegExp regExp = RegExp(
+        finalValue,
+        caseSensitive: false,
+        multiLine: false,
+      );
+
+      filteredTournaments = myTournaments
+          .where((tournament) =>
+              tournament.title.toLowerCase().contains(regExp) ||
+              tournament.status.toLowerCase().contains(regExp))
+          .toList();
+    }
+  }
+
   Future<void> getTournaments(String ownerId) async {
     try {
       isLoading = true;
