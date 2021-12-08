@@ -185,7 +185,7 @@ class _TournamentListTile extends StatelessWidget {
     );
 
     void _handleDeletePatient(String id) async {
-      //await tournamentService.deleteTournament(id);
+      await tournamentService.deleteTournament(id);
     }
 
     return Dismissible(

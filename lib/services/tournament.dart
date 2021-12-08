@@ -5,7 +5,10 @@ import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:uuid/uuid.dart';
 
 class TournamentService extends ChangeNotifier {
-  final uuid = const Uuid();
+  final _uuid = const Uuid();
+  final _collection = FirebaseFirestore.instance.collection(
+    AppFirebaseCollections.tournaments,
+  );
 
   Tournament? _currentTournament;
   Tournament? get currentTournament => _currentTournament;
@@ -81,9 +84,7 @@ class TournamentService extends ChangeNotifier {
     try {
       isLoading = true;
 
-      final result = await FirebaseFirestore.instance
-          .collection(AppFirebaseCollections.tournaments)
-          .get();
+      final result = await _collection.get();
 
       tournaments = Tournament.getListFromFirebase(result.docs);
     } catch (err) {
@@ -97,10 +98,8 @@ class TournamentService extends ChangeNotifier {
     try {
       isLoading = true;
 
-      final result = await FirebaseFirestore.instance
-          .collection(AppFirebaseCollections.tournaments)
-          .where('ownerId', isEqualTo: ownerId)
-          .get();
+      final result =
+          await _collection.where('ownerId', isEqualTo: ownerId).get();
 
       myTournaments = Tournament.getListFromFirebase(result.docs);
     } catch (err) {
@@ -115,7 +114,7 @@ class TournamentService extends ChangeNotifier {
     try {
       isLoading = true;
 
-      final newId = uuid.v4();
+      final newId = _uuid.v4();
 
       final Tournament newTournament = Tournament(
         id: newId,
@@ -129,15 +128,31 @@ class TournamentService extends ChangeNotifier {
         winnerIds: [],
       );
 
-      await FirebaseFirestore.instance
-          .collection(AppFirebaseCollections.tournaments)
-          .doc(newId)
-          .set(newTournament.toJson());
+      await _collection.doc(newId).set(newTournament.toJson());
 
       return newTournament;
     } catch (err) {
       print("createTournament error: ${err.toString()}");
       return null;
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<void> deleteTournament(
+    String id,
+  ) async {
+    try {
+      if (myTournaments.length == 1) {
+        isLoading = true;
+      }
+
+      await _collection.doc(id).delete();
+
+      myTournaments =
+          myTournaments.where((tournament) => tournament.id != id).toList();
+    } catch (err) {
+      print("deletePatient error: ${err.toString()}");
     } finally {
       isLoading = false;
     }
