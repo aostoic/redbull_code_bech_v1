@@ -7,10 +7,20 @@ class Player {
     required this.name,
   });
 
-  factory Player.fromJson(Map<String, dynamic> json) {
-    return Player(
-      id: json['UID'].toString(),
-      name: json['DisplayName'].toString(),
-    );
-  }
+  factory Player.fromJson(Map<String, dynamic> json) => Player(
+        id: json["id"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+      };
+
+  static List<Player> getListFromFirebase(List<dynamic> docs) => docs
+      .map((e) => Player(
+            id: e.id,
+            name: e.data()['name'],
+          ))
+      .toList();
 }

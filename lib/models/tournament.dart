@@ -1,3 +1,5 @@
+import 'package:redbull_code_bech_v1/models/models.dart';
+
 class Tournament {
   String id;
   String title;
@@ -6,8 +8,8 @@ class Tournament {
   String gameId;
   int playersQuantity;
   String ownerId;
-  List<dynamic> winnerIds;
-  List<dynamic> players;
+  List<String> winnerIds;
+  List<Player> players;
 
   Tournament({
     required this.id,
@@ -45,21 +47,20 @@ class Tournament {
         "players": players,
       };
 
-  static List<Tournament> getListFromFirebase(List<dynamic> docs) {
-    List<Tournament> tournaments = docs.map((e) {
-      return Tournament(
-        id: e.id,
-        title: e.data()['title'],
-        description: e.data()['description'],
-        status: e.data()['status'],
-        gameId: e.data()['gameId'],
-        playersQuantity: e.data()['playersQuantity'],
-        ownerId: e.data()['ownerId'],
-        winnerIds: e.data()['winnerIds'],
-        players: e.data()['players'],
-      );
-    }).toList();
+  static List<String> getWinnerIds(List<dynamic> docs) =>
+      docs.map((e) => e.toString()).toList();
 
-    return tournaments;
-  }
+  static List<Tournament> getListFromFirebase(List<dynamic> docs) => docs
+      .map((e) => Tournament(
+            id: e.id,
+            title: e.data()['title'],
+            description: e.data()['description'],
+            status: e.data()['status'],
+            gameId: e.data()['gameId'],
+            playersQuantity: e.data()['playersQuantity'],
+            ownerId: e.data()['ownerId'],
+            winnerIds: Tournament.getWinnerIds(e.data()['winnerIds']),
+            players: Player.getListFromFirebase(e.data()['players']),
+          ))
+      .toList();
 }
