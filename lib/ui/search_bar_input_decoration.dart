@@ -12,7 +12,7 @@ class SearchBarInputDecoration {
       hintStyle: TextStyle(
         color: AppColors.appBarBottomShadowColor,
         fontFamily: 'Ubuntu',
-        fontSize: 22,
+        fontSize: 18,
         fontWeight: FontWeight.w300,
       ),
       suffixIcon: const Icon(
