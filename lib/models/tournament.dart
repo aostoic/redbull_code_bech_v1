@@ -15,7 +15,7 @@ class Tournament {
     required this.id,
     required this.title,
     required this.description,
-    this.status = 'waiting',
+    this.status = 'waiting', // => waiting, inProgress, finished
     required this.gameId,
     required this.playersQuantity,
     required this.ownerId,

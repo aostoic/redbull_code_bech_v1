@@ -24,11 +24,6 @@ class MyTournamentsPage extends HookWidget {
       });
     }, []);
 
-    void goToTournament(Tournament tournament) {
-      tournamentService.currentTournament = tournament;
-      Navigator.of(context).pushNamed(TournamentPage.routeName);
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -147,11 +142,23 @@ class _TournamentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color _getCircleColor(int index) {
-      if (index % 2 == 0) {
-        return ColorFromHex('#C2C3CC');
+    Color _getCircleColor(String status) {
+      if (status == 'inProgress') {
+        return AppColors.tournamentInProgress;
+      } else if (status == 'finished') {
+        return AppColors.tournamentFinished;
       } else {
-        return ColorFromHex('#E2988B');
+        return AppColors.tournamentWaiting;
+      }
+    }
+
+    IconData _getStatusIcon(String status) {
+      if (status == 'inProgress') {
+        return FontAwesomeIcons.gamepad;
+      } else if (status == 'finished') {
+        return FontAwesomeIcons.trophy;
+      } else {
+        return FontAwesomeIcons.clock;
       }
     }
 
@@ -161,7 +168,8 @@ class _TournamentsList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (_, index) => _TournamentListTile(
         tournament: tournaments[index],
-        circleColor: _getCircleColor(index),
+        circleColor: _getCircleColor(tournaments[index].status),
+        statusIcon: _getStatusIcon(tournaments[index].status),
       ),
       itemCount: tournaments.length,
     );
@@ -171,11 +179,13 @@ class _TournamentsList extends StatelessWidget {
 class _TournamentListTile extends StatelessWidget {
   final Tournament tournament;
   final Color circleColor;
+  final IconData statusIcon;
 
   const _TournamentListTile({
     Key? key,
     required this.tournament,
     required this.circleColor,
+    required this.statusIcon,
   }) : super(key: key);
 
   @override
@@ -186,6 +196,11 @@ class _TournamentListTile extends StatelessWidget {
 
     void _handleDeletePatient(String id) async {
       await tournamentService.deleteTournament(id);
+    }
+
+    void _goToTournament(Tournament tournament) {
+      tournamentService.currentTournament = tournament;
+      Navigator.of(context).pushNamed(TournamentPage.routeName);
     }
 
     return Dismissible(
@@ -237,17 +252,13 @@ class _TournamentListTile extends StatelessWidget {
               height: 100,
               child: CircleAvatar(
                 backgroundColor: circleColor,
-                child: Text(
-                  tournament.title.substring(0, 1),
-                  style: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
+                child: Icon(
+                  statusIcon,
+                  color: Colors.white,
                 ),
               ),
             ),
-            onTap: () => print(tournament.id),
+            onTap: () => _goToTournament(tournament),
           ),
           Divider(
             color: Colors.grey.shade400,

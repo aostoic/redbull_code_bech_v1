@@ -31,4 +31,9 @@ class AppColors {
 
   // Social Colors
   static const Color facebookColor = Color(0xFF1877f2);
+
+  // Tournament Status Color
+  static const Color tournamentWaiting = Color.fromRGBO(255, 189, 36, 1);
+  static const Color tournamentInProgress = Color.fromRGBO(34, 217, 63, 1);
+  static const Color tournamentFinished = Color.fromRGBO(208, 44, 28, 1);
 }
