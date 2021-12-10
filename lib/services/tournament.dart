@@ -34,6 +34,14 @@ class TournamentService extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Tournament> _tournamentsByGame = [];
+  List<Tournament> get tournamentsByGame => _tournamentsByGame;
+
+  set tournamentsByGame(List<Tournament> values) {
+    _tournamentsByGame = values;
+    notifyListeners();
+  }
+
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
@@ -109,6 +117,20 @@ class TournamentService extends ChangeNotifier {
     }
   }
 
+  Future<void> getTournamentsByGame(String gameId) async {
+    try {
+      isLoading = true;
+
+      final result = await _collection.where('gameId', isEqualTo: gameId).get();
+
+      tournamentsByGame = Tournament.getListFromFirebase(result.docs);
+    } catch (err) {
+      print("getMyTournaments err: ${err.toString()}");
+    } finally {
+      isLoading = false;
+    }
+  }
+
   Future<Tournament?> createTournament(String title, String description,
       int playersQuantity, String gameId, String ownerId) async {
     try {
@@ -129,6 +151,43 @@ class TournamentService extends ChangeNotifier {
       );
 
       await _collection.doc(newId).set(newTournament.toJson());
+
+      return newTournament;
+    } catch (err) {
+      print("createTournament error: ${err.toString()}");
+      return null;
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<Tournament?> editTournament(
+      String title,
+      String description,
+      int playersQuantity,
+      String gameId,
+      String ownerId,
+      String idTournament) async {
+    try {
+      isLoading = true;
+
+      final Id = idTournament;
+
+      final Tournament newTournament = Tournament(
+        id: Id,
+        title: title,
+        description: description,
+        status: 'waiting',
+        gameId: gameId,
+        playersQuantity: playersQuantity,
+        ownerId: ownerId,
+        players: [],
+        winnerIds: [],
+      );
+
+      await _collection
+          .doc(Id)
+          .set(newTournament.toJson(), SetOptions(merge: true));
 
       return newTournament;
     } catch (err) {

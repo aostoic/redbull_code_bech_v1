@@ -11,3 +11,4 @@ export 'package:redbull_code_bech_v1/pages/profile.dart';
 export 'package:redbull_code_bech_v1/pages/sign_in.dart';
 export 'package:redbull_code_bech_v1/pages/tournament.dart';
 export 'package:redbull_code_bech_v1/pages/tournaments.dart';
+export 'package:redbull_code_bech_v1/pages/edit_tournament.dart';
