@@ -4,3 +4,5 @@ export 'package:redbull_code_bech_v1/widgets/dropdowns/app_dropdown_input.dart';
 export 'package:redbull_code_bech_v1/widgets/inputs/password_input.dart';
 export 'package:redbull_code_bech_v1/widgets/inputs/primary_input.dart';
 export 'package:redbull_code_bech_v1/widgets/profile/player_header.dart';
+export 'package:redbull_code_bech_v1/widgets/tournaments/tournament_list.dart';
+export 'package:redbull_code_bech_v1/widgets/tournaments/tournament_list_tile.dart';
