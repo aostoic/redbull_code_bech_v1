@@ -70,21 +70,22 @@ class TournamentPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 50,
-                vertical: 10,
+            if (tournament.status == 'waiting')
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 50,
+                  vertical: 10,
+                ),
+                child: PrimaryButton(
+                  text: _isAlreadyRegistered
+                      ? 'Cancelar inscripción'
+                      : 'Inscribirme',
+                  onPressed: () => _isAlreadyRegistered
+                      ? _handleCancelSignUpTournament()
+                      : _handleSignUpTournament(),
+                  isLoading: tournamentService.isLoading,
+                ),
               ),
-              child: PrimaryButton(
-                text: _isAlreadyRegistered
-                    ? 'Cancelar inscripción'
-                    : 'Inscribirme',
-                onPressed: () => _isAlreadyRegistered
-                    ? _handleCancelSignUpTournament()
-                    : _handleSignUpTournament(),
-                isLoading: tournamentService.isLoading,
-              ),
-            ),
           ],
         ),
       ),
