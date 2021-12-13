@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/helpers/colors.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
 class GamePage extends HookWidget {
   static String routeName = '/game';
@@ -92,16 +92,19 @@ class _TournamentsList extends StatelessWidget {
       }
     }
 
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (_, index) => _TournamentListTile(
-        tournament: tournaments[index],
-        circleColor: _getCircleColor(tournaments[index].status),
-        statusIcon: _getStatusIcon(tournaments[index].status),
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        itemBuilder: (_, index) => _TournamentListTile(
+          tournament: tournaments[index],
+          circleColor: _getCircleColor(tournaments[index].status),
+          statusIcon: _getStatusIcon(tournaments[index].status),
+        ),
+        itemCount: tournaments.length,
       ),
-      itemCount: tournaments.length,
     );
   }
 }
