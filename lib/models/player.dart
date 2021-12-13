@@ -19,8 +19,8 @@ class Player {
 
   static List<Player> getListFromFirebase(List<dynamic> docs) => docs
       .map((e) => Player(
-            id: e.id,
-            name: e.data()['name'],
+            id: e['id'],
+            name: e['name'],
           ))
       .toList();
 }

@@ -17,14 +17,10 @@ class TournamentPage extends StatelessWidget {
     final tournamentService = Provider.of<TournamentService>(context);
     final Tournament tournament = tournamentService.currentTournament!;
 
-    bool _isAlreadyRegistered(List<Player> players) {
-      return true;
-    }
-
-    final alreadyRegistered = tournament.players.isEmpty
-        ? false
-        : _isAlreadyRegistered(tournament.players);
-    print(alreadyRegistered);
+    final bool _isAlreadyRegistered = tournament.players
+        .where((player) => player.id == authService.user!.uid)
+        .toList()
+        .isNotEmpty;
 
     void _handleClick(String value) {
       switch (value) {
@@ -36,6 +32,10 @@ class TournamentPage extends StatelessWidget {
 
     Future<void> _handleSignUpTournament() async {
       await tournamentService.signUpTournament(authService.user!);
+    }
+
+    Future<void> _handleCancelSignUpTournament() async {
+      await tournamentService.cancelSignUp();
     }
 
     return Scaffold(
@@ -76,8 +76,12 @@ class TournamentPage extends StatelessWidget {
                 vertical: 10,
               ),
               child: PrimaryButton(
-                text: 'Inscribirme',
-                onPressed: () => _handleSignUpTournament(),
+                text: _isAlreadyRegistered
+                    ? 'Cancelar inscripción'
+                    : 'Inscribirme',
+                onPressed: () => _isAlreadyRegistered
+                    ? _handleCancelSignUpTournament()
+                    : _handleSignUpTournament(),
                 isLoading: tournamentService.isLoading,
               ),
             ),

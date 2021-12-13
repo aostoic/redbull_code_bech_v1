@@ -205,4 +205,8 @@ class TournamentService extends ChangeNotifier {
       isLoading = false;
     }
   }
+
+  Future<void> cancelSignUp() async {
+    print("Cancel sign up");
+  }
 }
