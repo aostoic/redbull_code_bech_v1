@@ -162,6 +162,16 @@ class _TournamentsList extends StatelessWidget {
       }
     }
 
+    String _getStatusText(String status) {
+      if (status == 'inProgress') {
+        return 'En progreso';
+      } else if (status == 'finished') {
+        return 'Finalizado';
+      } else {
+        return 'En espera';
+      }
+    }
+
     return ListView.builder(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
@@ -170,6 +180,7 @@ class _TournamentsList extends StatelessWidget {
         tournament: tournaments[index],
         circleColor: _getCircleColor(tournaments[index].status),
         statusIcon: _getStatusIcon(tournaments[index].status),
+        statusText: _getStatusText(tournaments[index].status),
       ),
       itemCount: tournaments.length,
     );
@@ -180,12 +191,14 @@ class _TournamentListTile extends StatelessWidget {
   final Tournament tournament;
   final Color circleColor;
   final IconData statusIcon;
+  final String statusText;
 
   const _TournamentListTile({
     Key? key,
     required this.tournament,
     required this.circleColor,
     required this.statusIcon,
+    required this.statusText,
   }) : super(key: key);
 
   @override
@@ -232,7 +245,7 @@ class _TournamentListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  tournament.status,
+                  statusText,
                   style: TextStyle(
                     fontSize: 15,
                     color: AppColors.disabledColor,
