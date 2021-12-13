@@ -126,7 +126,7 @@ class TournamentService extends ChangeNotifier {
 
       tournamentsByGame = Tournament.getListFromFirebase(result.docs);
     } catch (err) {
-      print("getMyTournaments err: ${err.toString()}");
+      print("getTournamentsByGame err: ${err.toString()}");
     } finally {
       isLoading = false;
     }
@@ -191,7 +191,15 @@ class TournamentService extends ChangeNotifier {
       );
 
       currentTournament!.players.add(newPlayer);
+
+      await _collection.doc(currentTournament!.id).update({
+        'players': currentTournament!.players.map((e) => e.toJson()).toList(),
+      });
     } catch (err) {
+      currentTournament!.players = currentTournament!.players
+          .where((player) => player.id != user.uid)
+          .toList();
+
       print("signUpTournament error: ${err.toString()}");
     } finally {
       isLoading = false;
