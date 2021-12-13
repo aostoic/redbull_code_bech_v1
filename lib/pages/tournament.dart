@@ -17,12 +17,25 @@ class TournamentPage extends StatelessWidget {
     final tournamentService = Provider.of<TournamentService>(context);
     final Tournament tournament = tournamentService.currentTournament!;
 
-    void handleClick(String value) {
+    bool _isAlreadyRegistered(List<Player> players) {
+      return true;
+    }
+
+    final alreadyRegistered = tournament.players.isEmpty
+        ? false
+        : _isAlreadyRegistered(tournament.players);
+    print(alreadyRegistered);
+
+    void _handleClick(String value) {
       switch (value) {
         case 'Editar':
           Navigator.of(context).pushNamed(EditTournamentPage.routeName);
           break;
       }
+    }
+
+    Future<void> _handleSignUpTournament() async {
+      await tournamentService.signUpTournament(authService.user!);
     }
 
     return Scaffold(
@@ -31,7 +44,7 @@ class TournamentPage extends StatelessWidget {
         actions: <Widget>[
           if (tournament.ownerId == authService.user!.uid)
             PopupMenuButton<String>(
-              onSelected: handleClick,
+              onSelected: _handleClick,
               itemBuilder: (BuildContext context) {
                 return {'Editar'}.map((String choice) {
                   return PopupMenuItem<String>(
@@ -64,7 +77,8 @@ class TournamentPage extends StatelessWidget {
               ),
               child: PrimaryButton(
                 text: 'Inscribirme',
-                onPressed: () {},
+                onPressed: () => _handleSignUpTournament(),
+                isLoading: tournamentService.isLoading,
               ),
             ),
           ],

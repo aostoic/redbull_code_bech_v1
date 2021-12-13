@@ -181,10 +181,7 @@ class TournamentService extends ChangeNotifier {
     }
   }
 
-  Future<void> signUpTournament(
-    User user,
-    Tournament tournament,
-  ) async {
+  Future<void> signUpTournament(User user) async {
     try {
       isLoading = true;
 
@@ -193,11 +190,7 @@ class TournamentService extends ChangeNotifier {
         name: user.email!,
       );
 
-      tournament.players.add(newPlayer);
-
-      await _collection.doc(tournament.id).update({
-        'players': tournament.players,
-      });
+      currentTournament!.players.add(newPlayer);
     } catch (err) {
       print("signUpTournament error: ${err.toString()}");
     } finally {
