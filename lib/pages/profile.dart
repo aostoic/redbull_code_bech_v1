@@ -68,10 +68,8 @@ class PlayerProfileOptions extends StatelessWidget {
       Navigator.of(context).pushNamed(routeName);
     }
 
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      // height: size.height * 0.15,
-
       child: Column(
         children: [
           SettingsGroup(

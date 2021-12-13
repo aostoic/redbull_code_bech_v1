@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/forms/forms.dart';
-import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:redbull_code_bech_v1/widgets/widgets.dart';
@@ -53,38 +52,7 @@ class _CreateForm extends HookWidget {
       });
     }, []);
 
-    void _submit() async {
-      FocusScope.of(context).unfocus();
-
-      if (!form.isValidForm()) {
-        AppAlerts.showAlert(
-          context,
-          'Error',
-          'Verifica los datos ingresados',
-        );
-        return;
-      }
-
-      final Tournament? newTournament = await tournamentService.editTournament(
-          form.title,
-          form.description,
-          form.playersQuantity,
-          form.gameId,
-          authService.user!.uid,
-          tournament.id);
-
-      if (newTournament == null) {
-        AppAlerts.showAlert(
-          context,
-          'Error',
-          'Ocurrió un error al crear el torneo',
-        );
-        return;
-      }
-
-      tournamentService.myTournaments.add(newTournament);
-      Navigator.of(context).pop();
-    }
+    void _submit() async {}
 
     return Container(
       padding: const EdgeInsets.all(20),

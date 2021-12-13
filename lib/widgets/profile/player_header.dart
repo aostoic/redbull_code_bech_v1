@@ -13,12 +13,7 @@ class PlayerHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Container(
-      // height: size.height * 0.4,
-      // width: double.infinity,
-
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

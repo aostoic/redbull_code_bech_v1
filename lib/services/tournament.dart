@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:redbull_code_bech_v1/helpers/helpers.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
@@ -161,43 +162,6 @@ class TournamentService extends ChangeNotifier {
     }
   }
 
-  Future<Tournament?> editTournament(
-      String title,
-      String description,
-      int playersQuantity,
-      String gameId,
-      String ownerId,
-      String idTournament) async {
-    try {
-      isLoading = true;
-
-      final Id = idTournament;
-
-      final Tournament newTournament = Tournament(
-        id: Id,
-        title: title,
-        description: description,
-        status: 'waiting',
-        gameId: gameId,
-        playersQuantity: playersQuantity,
-        ownerId: ownerId,
-        players: [],
-        winnerIds: [],
-      );
-
-      await _collection
-          .doc(Id)
-          .set(newTournament.toJson(), SetOptions(merge: true));
-
-      return newTournament;
-    } catch (err) {
-      print("createTournament error: ${err.toString()}");
-      return null;
-    } finally {
-      isLoading = false;
-    }
-  }
-
   Future<void> deleteTournament(
     String id,
   ) async {
@@ -212,6 +176,30 @@ class TournamentService extends ChangeNotifier {
           myTournaments.where((tournament) => tournament.id != id).toList();
     } catch (err) {
       print("deletePatient error: ${err.toString()}");
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  Future<void> signUpTournament(
+    User user,
+    Tournament tournament,
+  ) async {
+    try {
+      isLoading = true;
+
+      final Player newPlayer = Player(
+        id: user.uid,
+        name: user.email!,
+      );
+
+      tournament.players.add(newPlayer);
+
+      await _collection.doc(tournament.id).update({
+        'players': tournament.players,
+      });
+    } catch (err) {
+      print("signUpTournament error: ${err.toString()}");
     } finally {
       isLoading = false;
     }

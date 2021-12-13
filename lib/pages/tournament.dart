@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
-import 'package:redbull_code_bech_v1/pages/edit_tournament.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
 import 'package:redbull_code_bech_v1/widgets/buttons/primary_button.dart';
@@ -60,7 +59,7 @@ class TournamentPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 40,
+                horizontal: 50,
                 vertical: 10,
               ),
               child: PrimaryButton(
