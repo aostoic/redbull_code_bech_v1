@@ -73,7 +73,7 @@ class TournamentPage extends StatelessWidget {
             if (tournament.status == 'waiting')
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 50,
+                  horizontal: 30,
                   vertical: 10,
                 ),
                 child: PrimaryButton(
