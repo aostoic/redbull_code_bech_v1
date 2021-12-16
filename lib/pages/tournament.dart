@@ -35,7 +35,7 @@ class TournamentPage extends StatelessWidget {
     }
 
     Future<void> _handleCancelSignUpTournament() async {
-      await tournamentService.cancelSignUp();
+      await tournamentService.cancelSignUp(authService.user!);
     }
 
     return Scaffold(

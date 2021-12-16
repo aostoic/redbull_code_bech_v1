@@ -207,7 +207,23 @@ class TournamentService extends ChangeNotifier {
     }
   }
 
-  Future<void> cancelSignUp() async {
-    print("Cancel sign up");
+  Future<void> cancelSignUp(User user) async {
+    try {
+      isLoading = true;
+
+      final List<Player> currentPlayers = currentTournament!.players
+          .where((player) => player.id != user.uid)
+          .toList();
+
+      await _collection.doc(currentTournament!.id).update({
+        'players': currentPlayers.map((e) => e.toJson()).toList(),
+      });
+
+      currentTournament!.players = currentPlayers;
+    } catch (err) {
+      print("cancelSignUp error: ${err.toString()}");
+    } finally {
+      isLoading = false;
+    }
   }
 }
