@@ -86,8 +86,35 @@ class TournamentPage extends StatelessWidget {
                   isLoading: tournamentService.isLoading,
                 ),
               ),
+            PlayerList(players: tournament.players),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class PlayerList extends StatelessWidget {
+  final List<Player> players;
+
+  const PlayerList({
+    Key? key,
+    required this.players,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      width: double.infinity,
+      height: size.height * 0.5,
+      padding: const EdgeInsets.all(10),
+      child: ListView.builder(
+        itemBuilder: (_, index) {
+          return Text(players[index].name);
+        },
+        itemCount: players.length,
       ),
     );
   }

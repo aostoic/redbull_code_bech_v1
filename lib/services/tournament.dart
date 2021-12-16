@@ -190,16 +190,17 @@ class TournamentService extends ChangeNotifier {
         name: user.email!,
       );
 
-      currentTournament!.players.add(newPlayer);
+      final List<Player> currentPlayers = [
+        newPlayer,
+        ...currentTournament!.players
+      ];
 
       await _collection.doc(currentTournament!.id).update({
-        'players': currentTournament!.players.map((e) => e.toJson()).toList(),
+        'players': currentPlayers.map((e) => e.toJson()).toList(),
       });
-    } catch (err) {
-      currentTournament!.players = currentTournament!.players
-          .where((player) => player.id != user.uid)
-          .toList();
 
+      currentTournament!.players.add(newPlayer);
+    } catch (err) {
       print("signUpTournament error: ${err.toString()}");
     } finally {
       isLoading = false;
