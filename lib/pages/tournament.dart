@@ -62,8 +62,11 @@ class TournamentPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Text('Descripción : ', textAlign: TextAlign.center),
+            Text('${tournament.description}', textAlign: TextAlign.center),
+            const SizedBox(height: 30),
             Text(
-              'Jugadores inscritos: ${tournament.players.length}',
+              'Jugadores inscritos: ${tournament.players.length} / ${tournament.playersQuantity}',
               style: const TextStyle(
                 fontFamily: 'Ubuntu',
                 fontSize: 20,
