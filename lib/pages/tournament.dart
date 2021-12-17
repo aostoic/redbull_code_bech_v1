@@ -34,6 +34,10 @@ class TournamentPage extends StatelessWidget {
       await tournamentService.signUpTournament(authService.user!);
     }
 
+    Future<void> _goToViewMatch() async {
+      Navigator.of(context).pushNamed(MapsOfGroupPage.routeName);
+    }
+
     Future<void> _handleCancelSignUpTournament() async {
       await tournamentService.cancelSignUp(authService.user!);
     }
@@ -46,7 +50,7 @@ class TournamentPage extends StatelessWidget {
             PopupMenuButton<String>(
               onSelected: _handleClick,
               itemBuilder: (BuildContext context) {
-                return {'Editar'}.map((String choice) {
+                return {'Editar', 'Comenzar'}.map((String choice) {
                   return PopupMenuItem<String>(
                     value: choice,
                     child: Text(choice),
@@ -58,7 +62,7 @@ class TournamentPage extends StatelessWidget {
       ),
       body: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -89,6 +93,17 @@ class TournamentPage extends StatelessWidget {
                   isLoading: tournamentService.isLoading,
                 ),
               ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
+                vertical: 10,
+              ),
+              child: PrimaryButton(
+                text: 'Ver Mapa de Grupos',
+                onPressed: () => _goToViewMatch(),
+                isLoading: tournamentService.isLoading,
+              ),
+            ),
             PlayerList(players: tournament.players),
           ],
         ),
