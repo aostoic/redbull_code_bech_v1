@@ -101,7 +101,7 @@ class _TreeViewPageState extends State<TreeViewPage> {
                     BuchheimWalkerAlgorithm(builder, TreeEdgeRenderer(builder)),
                 paint: Paint()
                   ..color = Colors.green
-                  ..strokeWidth = 1
+                  ..strokeWidth = 10
                   ..style = PaintingStyle.stroke,
                 builder: (Node node) {
                   // I can decide what widget should be shown here based on the id
@@ -126,7 +126,7 @@ class _TreeViewPageState extends State<TreeViewPage> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             boxShadow: [
-              BoxShadow(color: Colors.deepOrange, spreadRadius: 1),
+              BoxShadow(color: Colors.purple, spreadRadius: 1),
             ],
           ),
           child: Text('${a}')),
@@ -138,35 +138,47 @@ class _TreeViewPageState extends State<TreeViewPage> {
 
   @override
   void initState() {
-    final node1 = Node.Id("que pasa");
-    final node2 = Node.Id(2);
-    final node3 = Node.Id(3);
-    final node4 = Node.Id(4);
-    final node5 = Node.Id(5);
-    final node6 = Node.Id(6);
-    final node7 = Node.Id(7);
-    final node8 = Node.Id(8);
-    final node9 = Node.Id(9);
-    final node10 = Node.Id(10);
-    final node11 = Node.Id(11);
-    final node12 = Node.Id(12);
-    final node13 = Node.Id(13);
+    final octavos1 = Node.Id('octavos1');
+    final octavos2 = Node.Id('octavos2');
+    final octavos3 = Node.Id('octavos3');
+    final octavos4 = Node.Id('octavos4');
+    final octavos5 = Node.Id('octavos5');
+    final octavos6 = Node.Id('octavos6');
+    final octavos7 = Node.Id('octavos7');
+    final octavos8 = Node.Id('octavos8');
+    final cuartos1 = Node.Id('cuartos1');
+    final cuartos2 = Node.Id('cuartos2');
+    final cuartos3 = Node.Id('cuartos3');
+    final cuartos4 = Node.Id('cuartos4');
+    final semiFinal1 = Node.Id('semifnal1');
+    final semiFinal2 = Node.Id('semifnal2');
+    final finalWinner = Node.Id('final');
 
-    graph.addEdge(node1, node6, paint: Paint()..color = Colors.red);
-    graph.addEdge(node6, node7, paint: Paint()..color = Colors.red);
-    graph.addEdge(node6, node8, paint: Paint()..color = Colors.red);
+    graph.addEdge(cuartos1, octavos1, paint: Paint()..color = Colors.green);
+    graph.addEdge(cuartos1, octavos2, paint: Paint()..color = Colors.red);
+    graph.addEdge(cuartos2, octavos3, paint: Paint()..color = Colors.green);
+    graph.addEdge(cuartos2, octavos4, paint: Paint()..color = Colors.red);
 
-    graph.addEdge(node1, node11, paint: Paint()..color = Colors.blue);
-    graph.addEdge(node11, node12);
-    graph.addEdge(node11, node13);
+    graph.addEdge(cuartos3, octavos5, paint: Paint()..color = Colors.green);
+    graph.addEdge(cuartos3, octavos6, paint: Paint()..color = Colors.red);
 
-    graph.addEdge(node1, node2, paint: Paint()..color = Colors.blue);
-    graph.addEdge(node11, node12);
+    graph.addEdge(cuartos4, octavos7, paint: Paint()..color = Colors.green);
+    graph.addEdge(cuartos4, octavos8, paint: Paint()..color = Colors.red);
+
+    graph.addEdge(semiFinal1, cuartos1, paint: Paint()..color = Colors.green);
+    graph.addEdge(semiFinal1, cuartos2, paint: Paint()..color = Colors.red);
+
+    graph.addEdge(semiFinal2, cuartos3, paint: Paint()..color = Colors.red);
+    graph.addEdge(semiFinal2, cuartos4, paint: Paint()..color = Colors.green);
+
+    graph.addEdge(finalWinner, semiFinal2, paint: Paint()..color = Colors.red);
+    graph.addEdge(finalWinner, semiFinal1,
+        paint: Paint()..color = Colors.green);
 
     builder
-      ..siblingSeparation = (10)
-      ..levelSeparation = (40)
-      ..subtreeSeparation = (40)
-      ..orientation = (BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM);
+      ..siblingSeparation = (100)
+      ..levelSeparation = (30)
+      ..subtreeSeparation = (30)
+      ..orientation = (BuchheimWalkerConfiguration.ORIENTATION_RIGHT_LEFT);
   }
 }
