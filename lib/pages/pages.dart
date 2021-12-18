@@ -1,7 +1,9 @@
 export 'package:redbull_code_bech_v1/pages/complete_login.dart';
 export 'package:redbull_code_bech_v1/pages/create_tournament.dart';
+export 'package:redbull_code_bech_v1/pages/edit_tournament.dart';
 export 'package:redbull_code_bech_v1/pages/game.dart';
 export 'package:redbull_code_bech_v1/pages/games.dart';
+export 'package:redbull_code_bech_v1/pages/group_map.dart';
 export 'package:redbull_code_bech_v1/pages/home.dart';
 export 'package:redbull_code_bech_v1/pages/loading.dart';
 export 'package:redbull_code_bech_v1/pages/my_tournaments.dart';
@@ -11,5 +13,3 @@ export 'package:redbull_code_bech_v1/pages/profile.dart';
 export 'package:redbull_code_bech_v1/pages/sign_in.dart';
 export 'package:redbull_code_bech_v1/pages/tournament.dart';
 export 'package:redbull_code_bech_v1/pages/tournaments.dart';
-export 'package:redbull_code_bech_v1/pages/edit_tournament.dart';
-export 'package:redbull_code_bech_v1/pages/maps_of_group.dart';

@@ -15,5 +15,5 @@ final appRoutes = {
   GamesPage.routeName: (_) => const GamesPage(),
   GamePage.routeName: (_) => const GamePage(),
   EditTournamentPage.routeName: (_) => const EditTournamentPage(),
-  MapsOfGroupPage.routeName: (_) => const MapsOfGroupPage(),
+  GroupMapPage.routeName: (_) => const GroupMapPage(),
 };

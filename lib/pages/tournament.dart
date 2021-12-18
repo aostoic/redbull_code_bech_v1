@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:redbull_code_bech_v1/models/models.dart';
 import 'package:redbull_code_bech_v1/pages/pages.dart';
 import 'package:redbull_code_bech_v1/services/services.dart';
-import 'package:redbull_code_bech_v1/widgets/buttons/primary_button.dart';
+import 'package:redbull_code_bech_v1/widgets/widgets.dart';
 
 class TournamentPage extends StatelessWidget {
   static String routeName = '/tournament';
@@ -34,8 +34,8 @@ class TournamentPage extends StatelessWidget {
       await tournamentService.signUpTournament(authService.user!);
     }
 
-    Future<void> _goToViewMatch() async {
-      Navigator.of(context).pushNamed(MapsOfGroupPage.routeName);
+    void _goToViewMatch() {
+      Navigator.of(context).pushNamed(GroupMapPage.routeName);
     }
 
     Future<void> _handleCancelSignUpTournament() async {
@@ -66,8 +66,8 @@ class TournamentPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text('Descripción : ', textAlign: TextAlign.center),
-            Text('${tournament.description}', textAlign: TextAlign.center),
+            const Text('Descripción : ', textAlign: TextAlign.center),
+            Text(tournament.description, textAlign: TextAlign.center),
             const SizedBox(height: 30),
             Text(
               'Jugadores inscritos: ${tournament.players.length} / ${tournament.playersQuantity}',
