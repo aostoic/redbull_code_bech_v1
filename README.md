@@ -23,6 +23,7 @@
 19. [Direct Select](https://pub.dev/packages/direct_select)
 20. [UUID](https://pub.dev/packages/uuid)
 21. [Grouped List](https://pub.dev/packages/grouped_list)
+22. [GraphView](https://pub.dev/packages/graphview)
 
 ## Configuracion gs
 
